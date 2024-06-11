@@ -594,6 +594,7 @@
 .tinymce-mobile-styles-menu [data-transitioning-state="after"] {
   transform: translate(100%);
 }
+@font-face {
   font-family: 'tinymce-mobile';
   font-style: normal;
   font-weight: normal;

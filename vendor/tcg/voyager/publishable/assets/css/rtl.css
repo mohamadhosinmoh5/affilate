@@ -5,21 +5,22 @@
 
 
 /*login page*/
-[dir="rtl"] body.login .logo-title-container {
+[dir="rtl"] body.login .logo-title-container
+{
     right: 30px;
     left: auto;
 }
-
-[dir="rtl"] body.login .copy h1 {
+[dir="rtl"] body.login .copy h1
+{
     margin: 20px 14px 0 0;
 }
-
-[dir="rtl"] body.login .copy p {
+[dir="rtl"] body.login .copy p
+{
     right: 15px;
     left: auto;
 }
-
-[dir="rtl"] body.login .login-container p {
+[dir="rtl"] body.login .login-container p
+{
     text-align: right;
 }
 
@@ -29,48 +30,45 @@
     text-align: left;
     padding-left: 20px;
 }
-
-[dir="rtl"] .side-body>.language-selector {
+[dir="rtl"] .side-body > .language-selector
+{
     float: left !important;
     padding: 28px 0 0 15px;
 }
-
 [dir="rtl"] .voyager div.dataTables_paginate li.next a::after,
 [dir="rtl"] .voyager div.dataTables_paginate li.previous a::before {
     content: none;
 }
-
 [dir="rtl"] .voyager div.dataTables_paginate li.previous a::before {
     content: "\e046";
-    font-family: voyager;
+    font-family: Voyager;
     right: 10px;
     left: auto;
 }
-
-[dir="rtl"] div.dataTables_paginate li.first>a,
-div.dataTables_paginate li.previous>a {
+[dir="rtl"] div.dataTables_paginate li.first > a, div.dataTables_paginate li.previous > a
+{
     padding-right: 24px;
     padding-left: 10px;
 }
 
-[dir="rtl"] div.dataTables_paginate li.last>a,
-div.dataTables_paginate li.next>a {
+[dir="rtl"] div.dataTables_paginate li.last > a, div.dataTables_paginate li.next > a
+{
     padding-left: 24px;
     padding-right: 10px;
 }
-
 [dir="rtl"] .voyager div.dataTables_paginate li.next a::after {
     content: "\e039";
-    font-family: voyager;
+    font-family: Voyager;
     left: 10px;
     right: auto;
 }
 
-[dir="rtl"] .dropdown-menu>li>form .voyager-power {
+[dir="rtl"] .dropdown-menu > li > form .voyager-power
+{
     float: right;
 }
-
-[dir="rtl"] .dropdown-menu>li>a i {
+[dir="rtl"] .dropdown-menu > li > a i
+{
     float: right;
     padding-left: 10px;
 }
@@ -80,16 +78,15 @@ div.dataTables_paginate li.next>a {
     float: right;
 }
 
-[dir="rtl"] .breadcrumb>li+li:before {
+[dir="rtl"] .breadcrumb > li + li:before {
     display: none;
 }
 
 [dir="rtl"] .breadcrumb li+li:after {
     padding: 0 5px;
 }
-
-[dir="rtl"] .breadcrumb>li+li:after {
-    font-family: voyager;
+[dir="rtl"] .breadcrumb > li + li:after {
+    font-family: Voyager;
     content: '\e039';
     position: relative;
     top: 1px;
@@ -100,10 +97,9 @@ div.dataTables_paginate li.next>a {
 /*imported from v0.11*/
 [dir="rtl"] .navbar {
     padding-left: 0px;
-    padding-right: 60px;
-}
+    padding-right: 60px;}
 
-[dir="rtl"] .app-container .side-body {
+[dir="rtl"] .app-container .side-body{
     margin-left: 15px;
     margin-right: 75px;
 }
@@ -123,18 +119,15 @@ div.dataTables_paginate li.next>a {
     float: right;
 }
 
-[dir="rtl"] .app-container .content-container .side-menu .navbar,
-.nav.navbar-nav {
+[dir="rtl"] .app-container .content-container .side-menu .navbar, .nav.navbar-nav {
     padding-right: 0px;
 }
 
-[dir="rtl"] table th {
+[dir="rtl"] table th{
     text-align: right;
 }
 
-[dir="rtl"] table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after {
+[dir="rtl"] table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after{
     right: unset;
     left: 4px;
 }
@@ -148,10 +141,10 @@ table.dataTable thead .sorting_desc:after {
 }
 
 [dir="rtl"] .page-title {
-    padding-right: 25px
+  padding-right: 25px
 }
 
-[dir="rtl"] .page-title>i {
+[dir="rtl"] .page-title > i {
     position: unset;
     margin-right: unset;
     font-size: 36px;
@@ -168,8 +161,7 @@ table.dataTable thead .sorting_desc:after {
     position: absolute !important;
 }
 
-[dir="rtl"] .navbar-nav.navbar-right,
-.navbar-nav.navbar-left {
+[dir="rtl"] .navbar-nav.navbar-right, .navbar-nav.navbar-left {
     right: unset;
     left: 10px;
 }
@@ -184,7 +176,7 @@ table.dataTable thead .sorting_desc:after {
     float: right;
     text-align: right;
     right: 56px;
-    left: auto;
+    left:auto;
 }
 
 [dir="rtl"] .text-right {
@@ -195,18 +187,18 @@ table.dataTable thead .sorting_desc:after {
     margin-right: 235px;
 }
 
-[dir="rtl"] .panel-title {
+[dir="rtl"] .panel-title{
     padding: 20px 30px;
     padding-right: 15px;
     text-align: right;
 }
 
-[dir="rtl"] .panel-actions {
+[dir="rtl"] .panel-actions{
     left: 30px;
     right: unset !important;
 }
 
-[dir="rtl"] code {
+[dir="rtl"] code{
     direction: ltr;
     display: inline-block;
 }
@@ -215,18 +207,17 @@ table.dataTable thead .sorting_desc:after {
     float: left !important;
 }
 
-[dir="rtl"] .delete,
-[dir="rtl"] .edit {
+[dir="rtl"] .delete, [dir="rtl"] .edit {
     margin-right: 5px;
     margin-left: auto;
 }
 
-[dir="rtl"] .app-container .content-container .side-menu .navbar-nav li.dropdown>a:after {
+[dir="rtl"] .app-container .content-container .side-menu .navbar-nav li.dropdown > a:after {
     right: auto !important;
     left: 1em;
 }
 
-[dir="rtl"] .dd .item_actions {
+[dir="rtl"] .dd .item_actions{
     right: auto;
     left: 10px;
 }
@@ -235,9 +226,7 @@ table.dataTable thead .sorting_desc:after {
     display: inline-block;
 }
 
-[dir="rtl"] .panel-actions .voyager-trash,
-[dir="rtl"] .voyager-sort-desc,
-[dir="rtl"] .voyager-sort-asc {
+[dir="rtl"] .panel-actions .voyager-trash, [dir="rtl"] .voyager-sort-desc, [dir="rtl"] .voyager-sort-asc {
     display: inline-block;
 }
 
@@ -246,19 +235,18 @@ table.dataTable thead .sorting_desc:after {
     margin-right: auto;
 }
 
-[dir="rtl"] .database-tables .name {
+[dir="rtl"] .database-tables .name{
     float: right;
 }
 
-[dir="rtl"] .database-tables .voyager-bread {
+[dir="rtl"] .database-tables .voyager-bread{
     margin-right: 10px;
     margin-left: auto;
     right: 100%;
     left: auto;
 }
 
-[dir="rtl"] .database-tables .actions .btn-warning,
-[dir="rtl"] .database-tables .actions .btn-primary {
+[dir="rtl"] .database-tables .actions .btn-warning, [dir="rtl"] .database-tables .actions .btn-primary{
     margin-left: 10px !important;
     margin-right: auto !important;
 }
@@ -284,12 +272,11 @@ table.dataTable thead .sorting_desc:after {
     margin-left: 10px;
 }
 
-[dir="rtl"] .navbar .dropdown.profile .dropdown-menu h5,
-[dir="rtl"] .navbar .dropdown.profile .dropdown-menu h6 {
+[dir="rtl"] .navbar .dropdown.profile .dropdown-menu h5, [dir="rtl"] .navbar .dropdown.profile .dropdown-menu h6 {
     float: right;
 }
 
-[dir="rtl"] .breadcrumb-container .toggle {
+[dir="rtl"] .breadcrumb-container .toggle{
     float: left;
     right: auto;
     left: 5px;
@@ -309,7 +296,7 @@ table.dataTable thead .sorting_desc:after {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-}
+ }
 
 [dir="rtl"] .detail_info h4 {
     float: right;
@@ -318,12 +305,12 @@ table.dataTable thead .sorting_desc:after {
 }
 
 [dir="rtl"] .detail_info p {
-    float: right;
-    color: #444;
-    padding-bottom: 3px;
-    font-size: 12px;
-    font-weight: 400;
-}
+     float: right;
+     color: #444;
+     padding-bottom: 3px;
+     font-size: 12px;
+     font-weight: 400;
+ }
 
 [dir="rtl"] .file_link .link_icon {
     margin-left: 5px;
@@ -331,19 +318,10 @@ table.dataTable thead .sorting_desc:after {
 }
 
 @media (min-width: 992px) {
-
-    [dir="rtl"] .col-md-1,
-    [dir="rtl"] .col-md-10,
-    [dir="rtl"] .col-md-11,
-    [dir="rtl"] .col-md-12,
-    [dir="rtl"] .col-md-2,
-    [dir="rtl"] .col-md-3,
-    [dir="rtl"] .col-md-4,
-    [dir="rtl"] .col-md-5,
-    [dir="rtl"] .col-md-6,
-    [dir="rtl"] .col-md-7,
-    [dir="rtl"] .col-md-8,
-    [dir="rtl"] .col-md-9 {
+    [dir="rtl"] .col-md-1, [dir="rtl"] .col-md-10, [dir="rtl"] .col-md-11,
+    [dir="rtl"] .col-md-12, [dir="rtl"] .col-md-2, [dir="rtl"] .col-md-3,
+    [dir="rtl"] .col-md-4, [dir="rtl"] .col-md-5, [dir="rtl"] .col-md-6,
+    [dir="rtl"] .col-md-7, [dir="rtl"] .col-md-8, [dir="rtl"] .col-md-9 {
         float: right;
     }
 }
@@ -358,12 +336,8 @@ table.dataTable thead .sorting_desc:after {
 [dir="rtl"] .voyager .navbar .navbar-nav .dropdown-menu,
 [dir="rtl"] .voyager .navbar.navbar-default .navbar-nav .dropdown-menu {
     background-color: #fff;
-    overflow: scroll;
-    height: 300px;
     display: block;
     position: absolute !important;
-    overflow: scroll;
-    height: 300px;
     left: 0;
     right: auto;
 }
@@ -372,7 +346,7 @@ table.dataTable thead .sorting_desc:after {
 
 [dir="rtl"] .voyager .navbar.navbar-default>.container-fluid:after,
 [dir="rtl"] .voyager .navbar>.container-fluid {
-    border-bottom: 0;
+    border-bottom:0;
     width: 99.5%;
     height: 1px;
 }
@@ -380,63 +354,43 @@ table.dataTable thead .sorting_desc:after {
 
 /******** New ********/
 [dir="rtl"] .database-tables .name a {
-    float: right;
+ float:right;
 }
 
-[dir="rtl"] .app-container .side-body .container-fluid {
-    padding-left: 0;
-    padding-right: 15px;
+[dir="rtl"] .app-container .side-body .container-fluid{
+	padding-left:0;
+	padding-right: 15px;
 
-}
+	}
 
 [dir="rtl"] .table.dataTable tbody td,
 table.dataTable tbody th {
-    padding: 8px 18px
+ padding:8px 18px
 }
+[dir="rtl"] .btn-group-sm > .btn i, .btn-sm i {top:3px}
 
-[dir="rtl"] .btn-group-sm>.btn i,
-.btn-sm i {
-    top: 3px
-}
-
-[dir="rtl"] .glyphicon-list::before {
-    font-family: Yekan !important;
-}
+[dir="rtl"] .glyphicon-list::before{font-family: voyager !important;}
 
 
-[dir="rtl"] .ps.ps--active-y>.ps__scrollbar-y-rail {
+[dir="rtl"] .ps.ps--active-y > .ps__scrollbar-y-rail {
     right: auto !important;
     left: 0;
 }
 
-[dir="rtl"] .ps>.ps__scrollbar-y-rail>.ps__scrollbar-y {
-    right: auto !important;
+[dir="rtl"] .ps > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+    right:auto !important;
     left: 2px;
 }
 
 [dir="rtl"] .hamburger.is-active .hamburger-inner:before {
-    transform: translate3d(5px, 1px, 0) rotate(45deg) scaleX(.5);
+    transform: translate3d(5px,1px,0) rotate(45deg) scaleX(.5);
 }
 
 [dir="rtl"] .hamburger.is-active .hamburger-inner:after {
-    transform: translate3d(5px, -1px, 0) rotate(-45deg) scaleX(.5);
+    transform: translate3d(5px,-1px,0) rotate(-45deg) scaleX(.5);
 }
 
 [dir="rtl"] .dd-list .dd-list {
     padding-left: unset;
     padding-right: 30px;
 }
-
-
-[dir="rtl"] .voyager .navbar .navbar-nav .dropdown-menu,
-[dir="rtl"] .voyager .navbar.navbar-default .navbar-nav .dropdown-menu {
-    min-width: 400px !important;
-    height: 400px;
-}
-
-
-
-
-/* .table{
-    text-wrap: none !important;
-} */

@@ -61,32 +61,14 @@
                                     $role_permissions = (isset($dataTypeContent)) ? $dataTypeContent->permissions->pluck('key')->toArray() : [];
                                 ?>
                                 @foreach(Voyager::model('Permission')->all()->groupBy('table_name') as $table => $permission)
-                            
-                                @if (Auth::user()->role_id != 1 && Str::contains($table, 'roles'))
-                                    @continue
-                                @endif
                                     <li>
                                         <input type="checkbox" id="{{$table}}" class="permission-group">
                                         <label for="{{$table}}"><strong>{{\Illuminate\Support\Str::title(str_replace('_',' ', $table))}}</strong></label>
                                         <ul>
-                                            @foreach($permission as $key => $perm)
-                                            
+                                            @foreach($permission as $perm)
                                                 <li>
                                                     <input type="checkbox" id="permission-{{$perm->id}}" name="permissions[{{$perm->id}}]" class="the-permission" value="{{$perm->id}}" @if(in_array($perm->key, $role_permissions)) checked @endif>
-                                                    {{-- <label for="permission-{{$perm->id}}">{{\Illuminate\Support\Str::title(str_replace('_', ' ', $perm->key))}}</label> --}}
-                                                   
-                                                    @if (Str::contains($perm->key, 'browse'))
-                                                        <label for="permission-{{$perm->id}}">بارگزاری  {{str_replace('browse_', ' ', $perm->key)}}</label>
-                                                    @elseif (Str::contains($perm->key, 'edit'))
-                                                        <label for="permission-{{$perm->id}}">ویرایش  {{str_replace('edit_', ' ', $perm->key)}}</label>
-                                                    @elseif (Str::contains($perm->key, 'read'))
-                                                        <label for="permission-{{$perm->id}}">مشاهده  {{str_replace('read_', ' ', $perm->key)}}</label>
-                                                    @elseif (Str::contains($perm->key, 'add'))
-                                                        <label for="permission-{{$perm->id}}">افزودن  {{str_replace('add_', ' ', $perm->key)}}</label>
-                                                    @elseif (Str::contains($perm->key, 'delete'))
-                                                        <label for="permission-{{$perm->id}}">حذف  {{str_replace('delete_', ' ', $perm->key)}}</label>
-                                                    @endif
-                                                
+                                                    <label for="permission-{{$perm->id}}">{{\Illuminate\Support\Str::title(str_replace('_', ' ', $perm->key))}}</label>
                                                 </li>
                                             @endforeach
                                         </ul>

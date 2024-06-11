@@ -81,9 +81,8 @@ class VoyagerBaseController extends Controller
 
             // If a column has a relationship associated with it, we do not want to show that field
             $this->removeRelationshipField($dataType, 'browse');
-            
-            if ($search->value != '' && $search->key && $search->filter)
-            {
+
+            if ($search->value != '' && $search->key && $search->filter) {
                 $search_filter = ($search->filter == 'equals') ? '=' : 'LIKE';
                 $search_value = ($search->filter == 'equals') ? $search->value : '%'.$search->value.'%';
 
@@ -94,7 +93,6 @@ class VoyagerBaseController extends Controller
                         $row->details->model::where($row->details->label, $search_filter, $search_value)->pluck('id')->toArray()
                     );
                 } else {
-                    
                     if ($dataType->browseRows->pluck('field')->contains($search->key)) {
                         $query->where($searchField, $search_filter, $search_value);
                     }
@@ -917,7 +915,6 @@ class VoyagerBaseController extends Controller
 
                 // If search query, use LIKE to filter results depending on field label
                 if ($search) {
-                   
                     // If we are using additional_attribute as label
                     if (in_array($options->label, $additional_attributes)) {
                         $relationshipOptions = $model->get();
@@ -978,11 +975,9 @@ class VoyagerBaseController extends Controller
     protected function findSearchableRelationshipRow($relationshipRows, $searchKey)
     {
         return $relationshipRows->filter(function ($item) use ($searchKey) {
-            
             if ($item->details->column != $searchKey) {
                 return false;
             }
-
             if ($item->details->type != 'belongsTo') {
                 return false;
             }

@@ -147,17 +147,14 @@ abstract class Controller extends BaseController
         }
 
         foreach ($multi_select as $sync_data) {
-            // $data->copies()->detach($data->id);
-            $query = $data->belongsToMany(
+            $data->belongsToMany(
                 $sync_data['model'],
                 $sync_data['table'],
                 $sync_data['foreignPivotKey'],
                 $sync_data['relatedPivotKey'],
                 $sync_data['parentKey'],
                 $sync_data['relatedKey']
-            );
-            $query->detach($data->id);
-            $query->sync($sync_data['content']);
+            )->sync($sync_data['content']);
         }
 
         // Rename folders for newly created data through media-picker
@@ -171,10 +168,10 @@ abstract class Controller extends BaseController
                 $data->{$row->field} = str_replace($uuid, $data->getKey(), $data->{$row->field});
             });
             $data->save();
-            if ($old_path != $new_path &&
-                !Storage::disk(config('voyager.storage.disk'))->exists($new_path) &&
+            if ($old_path != $new_path && 
+                !Storage::disk(config('voyager.storage.disk'))->exists($new_path) && 
                 Storage::disk(config('voyager.storage.disk'))->exists($old_path)
-                )
+                ) 
             {
                 $request->session()->forget([$slug.'_path', $slug.'_uuid']);
                 Storage::disk(config('voyager.storage.disk'))->move($old_path, $new_path);

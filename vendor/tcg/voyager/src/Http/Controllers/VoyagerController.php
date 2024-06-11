@@ -10,27 +10,12 @@ use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use TCG\Voyager\Facades\Voyager;
-use App\Contract;
 
 class VoyagerController extends Controller
 {
     public function index()
     {
-
-        $conts = Contract::withSum('statements','statement_final_amount')->get();
-        $paginateData = Contract::withSum('statements','statement_final_amount')->paginate(15);
-        $totalPrice = 0;
-        $count = 0;
-        $delevery = 0;
-        foreach ($conts as $item){
-            $totalPrice+=$item->statements_sum_statement_final_amount;
-            $count++;
-            if($item->deliveryTermination){
-                $delevery++;
-            }
-        }
-        
-        return Voyager::view('voyager::index',compact('totalPrice','conts','paginateData','delevery','count'));
+        return Voyager::view('voyager::index');
     }
 
     public function logout()

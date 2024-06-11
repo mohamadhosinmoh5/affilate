@@ -42,7 +42,7 @@ return [
     */
 
     'models' => [
-        //'namespace' => 'App\\Models\\',
+       // 'namespace' => 'App\\Models\\',
     ],
 
     /*
@@ -104,13 +104,13 @@ return [
         /*
          * Select default language
          */
-        'default' => 'fa',
+        'default' => 'en',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
-            'fa',
+            'en',
             //'pt',
         ],
     ],
@@ -144,9 +144,7 @@ return [
         ],
 
         'widgets' => [
-            'TCG\\Voyager\\Widgets\\UserDimmer',
-            'TCG\\Voyager\\Widgets\\PostDimmer',
-            'TCG\\Voyager\\Widgets\\PageDimmer',
+
         ],
 
     ],
@@ -189,16 +187,11 @@ return [
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        // 'assets/css/date-picker.css',
-        'assets/css/fonts.css',
-       
+        //'css/custom.css',
     ],
 
     'additional_js' => [
         //'js/custom.js',
-        // 'assets/js/jquery.min.js',
-        // 'assets/js/persian-date.min.js',
-        // 'assets/js/persian-datepicker.min.js',
     ],
 
     'googlemaps' => [
@@ -208,6 +201,21 @@ return [
             'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
         ],
         'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model specific settings
+    |--------------------------------------------------------------------------
+    |
+    | Here you change some model specific settings
+    |
+    */
+
+    'settings' => [
+        // Enables Laravel cache method for
+        // storing cache values between requests
+        'cache' => false,
     ],
 
     // Activate compass when environment is NOT local

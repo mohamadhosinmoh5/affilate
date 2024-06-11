@@ -12,14 +12,10 @@
                     $relationshipData = (isset($data)) ? $data : $dataTypeContent;
                     $model = app($options->model);
                     $query = $model::where($options->key,$relationshipData->{$options->column})->first();
-                    // dd($options);
                 @endphp
 
                 @if(isset($query))
                     <p>{{ $query->{$options->label} }}</p>
-                    @if ($options->label == 'contract_number')
-                        <p>{{ $query->contract_title }}</p>
-                    @endif
                 @else
                     <p>{{ __('voyager::generic.no_results') }}</p>
                 @endif
@@ -44,11 +40,7 @@
                     @endif
 
                     @foreach($query as $relationshipData)
-                        <option value="{{ $relationshipData->{$options->key} }}" @if(old($options->column, $dataTypeContent->{$options->column}) == $relationshipData->{$options->key}) selected="selected" @endif>{{ $relationshipData->{$options->label} }}  
-                            @if ($options->label == 'contract_number')
-                                <p>{{ $relationshipData->contract_title }}</p>
-                            @endif
-                        </option>
+                        <option value="{{ $relationshipData->{$options->key} }}" @if(old($options->column, $dataTypeContent->{$options->column}) == $relationshipData->{$options->key}) selected="selected" @endif>{{ $relationshipData->{$options->label} }}</option>
                     @endforeach
                 </select>
 
@@ -113,8 +105,6 @@
                 @endphp
 
                 @if($query->isNotEmpty())
-            
-                {{-- @if ($row->display_name == 'شماره قرار داد') --}}
                     <ul>
                         @foreach($query as $query_res)
                             <li>{{ $query_res->{$options->label} }}</li>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-{{-- {{ __('voyager::generic.is_rtl') == 'true' ? 'rtl' : 'ltr' }} --}}
-{{-- {{ config('app.locale') }} --}}
+{{-- <html lang="{{ config('app.locale') }}" dir="{{ __('voyager::generic.is_rtl') == 'true' ? 'rtl' : 'ltr' }}"> --}}
+    <html lang="{{ config('app.locale') }}" dir="rtl">
 <head>
     <title>@yield('page_title', setting('admin.title') . " - " . setting('admin.description'))</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,9 +8,8 @@
     <meta name="assets-path" content="{{ route('voyager.voyager_assets') }}"/>
 
     <!-- Google Fonts -->
-    <link href="{{asset('assets/css/font.css')}}" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
-    <link href="{{asset('assets/css/fonts.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
     <!-- Favicon -->
     <?php $admin_favicon = Voyager::setting('admin.icon_image', ''); ?>
     @if($admin_favicon == '')
@@ -20,102 +18,19 @@
         <link rel="shortcut icon" href="{{ Voyager::image($admin_favicon) }}" type="image/png">
     @endif
 
-    
-    <link rel="stylesheet" href="{{ asset('assets/css/date-picker.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/persian-date.css') }}"/>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    {{-- <script src="js/jquery.js"></script> --}}
 
-    <script src="{{ asset('assets/js/persian-date.min.js') }}"></script>
-    <script src="{{ asset('assets/js/persian-datepicker.min.js') }}"></script>
-    {{-- <script src="https://unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
-    <script src="https://unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script> --}}
-    <link rel="stylesheet" type="text/css" href="{{url('assets')}}/css/table.css">
-     <style>
-     @font-face {
-        font-family: anjomanBold;
-        src: url('{{asset("assets/fonts")}}/AnjomanMax-Bold.woff');
-    }
 
-      * {
-        font-family: anjomanBold, sans-serif !important;
-        font-size: 14px;
-        /* font-weight: 150; */
-      }
-      .app-footer {
-        display: none !important;
-      }
-
-      .nav-box{
-        margin-bottom: 20px;
-      }
-
-      .nav-link {
-          cursor: pointer;
-        }
-
-        .nav-link.active {
-            background: #22a7ef;
-            color: white;
-        }
-
-        .table-box {
-            overflow: scroll;
-            width: 100%;
-            height: 50vh;
-            /* scrollbar-color: red orange; */
-          
-        }
-      
-        .table-box::-webkit-scrollbar {
-            background-color: #f5f5f5;
-            width: 12px;
-            border-radius: 10px;
-            scrollbar-width: thin; 
-        }
-        
-        .table-box::-webkit-scrollbar-track {
-            border-radius: 10px;
-            box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
-        }
-        
-        .table-box::-webkit-scrollbar-thumb {
-            background: #c0c0c0;
-            /* background-image: -webkit-gradient(linear, left bottom, left top, color-stop(.5, #a520ca), color-stop(1, #2681cc)); */
-            border-radius: 10px;
-        }
-
-        #toEXCEL{
-            cursor: pointer;
-            background: #f5f4f4;
-            padding: 10px;
-            border: 1px solid #dfdfdf;
-            border-radius: 10px;
-        }
-        #toEXCEL:hover {
-            transition: all ease-in-out 0.3s;
-            background: #2681cc;
-            color: white;
-        }
-     </style>
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
 
     @yield('css')
-    @if(true)
-        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css"> --}}
-        
-        <link href="{{asset('assets/css/boot-rtl.css')}}" rel="stylesheet">
+    {{-- @if(__('voyager::generic.is_rtl') == 'true') --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
         <link rel="stylesheet" href="{{ voyager_asset('css/rtl.css') }}">
-    @endif
+    {{-- @endif --}}
 
     <!-- Few Dynamic Styles -->
     <style type="text/css">
-        .view{
-                display: none;
-            }
-            
         .voyager .side-menu .navbar-header {
             background:{{ config('voyager.primary_color','#22A7F0') }};
             border-color:{{ config('voyager.primary_color','#22A7F0') }};
@@ -128,10 +43,6 @@
         }
         .voyager .breadcrumb a{
             color:{{ config('voyager.primary_color','#22A7F0') }};
-        }
-
-        .ps--active-x > .ps__rail-x, .ps--active-y > .ps__rail-y {
-            display: none;
         }
     </style>
 
@@ -210,10 +121,6 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 
 <script>
-
-
-
-
     @if(Session::has('alerts'))
         let alerts = {!! json_encode(Session::get('alerts')) !!};
         helpers.displayAlerts(alerts, toastr);

@@ -37,7 +37,6 @@
 @stop
 
 @section('content')
-
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -48,31 +47,17 @@
                             <form method="get" class="form-search">
                                 <div id="search-input">
                                     <div class="col-2">
-                                       
                                         <select id="search_key" name="key">
-                                            @php
-                                                $names=[];
-                                            @endphp
                                             @foreach($searchNames as $key => $name)
-                                                @if (in_array($name,$names))
-                                                    @php
-                                                        continue;
-                                                    @endphp
-                                                @endif
                                                 <option value="{{ $key }}" @if($search->key == $key || (empty($search->key) && $key == $defaultSearchKey)) selected @endif>{{ $name }}</option>
-                                                @php
-                                                $names[] = $name;
-                                                @endphp
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-2">
-                                        <input type="hidden" class="form-control"  name="filter" value="contains">
-                                    
-                                        {{-- <select id="filter" name="filter">
-                                            <option value="contains" @if($search->filter == "contains") selected @endif>شامل</option>
+                                        <select id="filter" name="filter">
+                                            <option value="contains" @if($search->filter == "contains") selected @endif>{{ __('voyager::generic.contains') }}</option>
                                             <option value="equals" @if($search->filter == "equals") selected @endif>=</option>
-                                        </select> --}}
+                                        </select>
                                     </div>
                                     <div class="input-group col-md-12">
                                         <input type="text" class="form-control" placeholder="{{ __('voyager::generic.search') }}" name="s" value="{{ $search->value }}">
@@ -99,7 +84,6 @@
                                             </th>
                                         @endif
                                         @foreach($dataType->browseRows as $row)
-
                                         <th>
                                             @if ($isServerSide && in_array($row->field, $sortableColumns))
                                                 <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">
@@ -122,7 +106,6 @@
                                 </thead>
                                 <tbody>
                                     @foreach($dataTypeContent as $data)
-                                   
                                     <tr>
                                         @if($showCheckboxColumn)
                                             <td>
@@ -142,10 +125,11 @@
                                                     @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                 @elseif($row->type == 'image')
                                                     <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
-                                                @elseif($row->type == 'relationship') 
-                                                        @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
+                                                @elseif($row->type == 'relationship')
+                                                    @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
                                                 @elseif($row->type == 'select_multiple')
                                                     @if(property_exists($row->details, 'relationship'))
+
                                                         @foreach($data->{$row->field} as $item)
                                                             {{ $item->{$row->field} }}
                                                         @endforeach
@@ -195,20 +179,13 @@
                                                     @endif
                                                 @elseif($row->type == 'color')
                                                     <span class="badge badge-lg" style="background-color: {{ $data->{$row->field} }}">{{ $data->{$row->field} }}</span>
-                                                 @elseif($row->type == 'numberFilter')
-                                                    @include('voyager::multilingual.input-hidden-bread-browse')
-                                                    <div class="num">{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
                                                 @elseif($row->type == 'text')
-                                                
-                                                @include('voyager::multilingual.input-hidden-bread-browse')
-                                                        <div>{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
-                                                @elseif($row->type == 'text_area')
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     <div>{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
                                                 @elseif($row->type == 'text_area')
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     <div>{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
-                                                    @elseif($row->type == 'file' && !empty($data->{$row->field}) )
+                                                @elseif($row->type == 'file' && !empty($data->{$row->field}) )
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     @if(json_decode($data->{$row->field}) !== null)
                                                         @foreach(json_decode($data->{$row->field}) as $file)
@@ -273,7 +250,6 @@
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     <span>{{ $data->{$row->field} }}</span>
                                                 @endif
-                                               
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
@@ -282,9 +258,6 @@
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
-                                            @if ($dataType->name =='papers')
-                                                <a href="{{url('')}}/paper/{{$data->id}}" class="btn btn-success btn-sm pull-right">پرینت</a>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -339,89 +312,17 @@
 @stop
 
 @section('css')
-    @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
-        <link rel="stylesheet" href="{{ voyager_asset('lib/css/responsive.dataTables.min.css') }}">
-    @endif
+@if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
+    <link rel="stylesheet" href="{{ voyager_asset('lib/css/responsive.dataTables.min.css') }}">
+@endif
 @stop
 
 @section('javascript')
-<script>
-      var inputElement = document.getElementsByClassName("num");
-
-
-// inputElement = Array.form(inputElement)
-inputElement.forEach(element => {
-    console.log(element)
-    inputvalue = element.innerHTML
-    // console.log(inputElement.innerHTML)
-
-    inputvaluebycomma = separateNumbers(inputvalue)
-
-    element.innerHTML = inputvaluebycomma
-
-});
-
-function separateNumbers(inputNumber) {
-    // حذف ویرگول‌ها از ورودی
-    let numberString = inputNumber.replace(/,/g, "");
-
-    // طول رشته
-    let length = numberString.length;
-
-    // ایجاد یک آرایه برای نگهداری اعداد جدا شده
-    let separatedNumbers = [];
-
-    // شمارنده برای تعیین مکان شروع جدا کردن
-    let startIndex = length % 3;
-
-    // اضافه کردن اعداد اولیه
-    if (startIndex !== 0) {
-        separatedNumbers.push(numberString.substring(0, startIndex));
-    }
-
-    // جدا کردن اعداد به هر سه تایی
-    while (startIndex < length) {
-        separatedNumbers.push(
-            numberString.substring(startIndex, startIndex + 3)
-        );
-        startIndex += 3;
-    }
-
-
-    // تبدیل آرایه به رشته با ویرگول بین اعداد
-    let result = separatedNumbers.join(",");
-
-    // console.log(result)
-
-    return result;
-}
-
-function removeCommas(inputNumber) {
-    // استفاده از عبارت منظم برای حذف ویرگول‌ها
-    let result = inputNumber.replace(/,/g, "");
-    return result;
-}
-
-// انتخاب المان ورودی
-var inputElement = document.getElementsByClassName("num")[0];
-// var inputElementMain = document.getElementsByClassName("main")[0];
-// console.log(inputElement)
-let inputNumber = inputElement.innerHTML;
-
-inputElement.innerHTML = separateNumbers(inputNumber);
-
-// // console.log(numberString)
-
-// گوش دادن به رویداد input بر روی المان ورودی
-
-
-</script>
     <!-- DataTables -->
     @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
         <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
     @endif
     <script>
-  
         $(document).ready(function () {
             @if (!$dataType->server_side)
                 var table = $('#dataTable').DataTable({!! json_encode(

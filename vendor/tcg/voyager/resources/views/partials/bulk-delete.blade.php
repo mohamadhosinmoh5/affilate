@@ -1,6 +1,4 @@
-<a class="btn btn-danger" id="bulk_delete_btn"><i class="voyager-trash">
-    </i> <span>{{ __('voyager::generic.bulk_delete') }}</span>
-</a>
+<a class="btn btn-danger" id="bulk_delete_btn"><i class="voyager-trash"></i> <span>{{ __('voyager::generic.bulk_delete') }}</span></a>
 
 {{-- Bulk delete modal --}}
 <div class="modal modal-danger fade" tabindex="-1" id="bulk_delete_modal" role="dialog">

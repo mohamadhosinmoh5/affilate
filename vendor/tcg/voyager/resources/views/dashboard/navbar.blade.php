@@ -32,61 +32,7 @@
             </ol>
             @show
         </div>
-        {{-- __('voyager::generic.is_rtl') == 'true' --}}
-        <ul class="nav navbar-nav @if (true) navbar-left @else navbar-right @endif">
-            @php
-               $notifs = App\Notif::paginate(10);
-               $count = App\Notif::WhereIn('read',[null,0])->count();
-            @endphp
-           
-            <li class="dropdown profile" id="notif-box">
-                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
-                aria-expanded="false">
-                
-                <div style="position: relative" >
-                    <img src="{{url('/assets/image')}}/icons8-notification-64.png" class="profile-img">
-                    @if ($count)
-                        <div style="background:#ff0101; border-radius:50%;width:25px;height:25px;position: absolute;top:0;left:0;text-align:center;">
-                        </div>
-                        <span class="notifeCount" style="    position: absolute;
-                        z-index: 2;
-                        top: -20px;
-                        left: 10px;
-                        color: white;
-                        font-weight: bold;">
-                            {{$count}}
-                        </span>
-                    @endif
-                </div>
-                </a>
-
-             <ul class="dropdown-menu dropdown-menu-animated">
-                    @foreach ($notifs as $item)
-                        <li>
-                            @if ($item->day_avg > 0 )
-                                <div class="alert alert-warning">
-                                    مدت {{$item->day_avg}} روز تا پایان قرار داد {{ $item->title}}     باقی مانده است .
-                                    <a href="{{url('')}}/admin/delivery-terminations">جهت تحویل یا خاتمه اقدام کنید </a>
-                                </div>
-                            @else
-                                <div class="alert alert-danger">
-                                    مدت {{ $item->day_last}}روز از قرار داد {{ $item->title}} گذشته است
-                                    <a href="{{url('')}}/admin/papers/create">جهت ارسال نامه کلیک کنید </a> 
-                                </div>
-                            @endif
-                        </li>
-                    @endforeach
-
-                    <div class="row">
-                        <h6 class="text-center">برای دیدن اعلانات بیشتر
-                            <a href="{{url('')}}/admin/notif">کلیک کنید </a>
-                        </h6>
-
-                    </div>
-                </ul>
-
-                
-            </li>
+        <ul class="nav navbar-nav @if (__('voyager::generic.is_rtl') == 'true') navbar-left @else navbar-right @endif">
             <li class="dropdown profile">
                 <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
                    aria-expanded="false"><img src="{{ $user_avatar }}" class="profile-img"> <span
@@ -130,45 +76,3 @@
         </ul>
     </div>
 </nav>
-
-
-<script>
-        setTimeout(() => {
-      
-      $('#notif-box').click(function(){
- 
-      $.ajax({
-                  type: "post",
-                  url: "{{url('')}}/updateRead",
-                  data:{'_token':'{{csrf_token()}}'},
-                  success: function (response)
-                  {
-                      if(response)
-                      {
-                          console.log(response);
-                      }
-                  }
-              });
-  })
-
-  setInterval(() => {
-      $.ajax({
-          type: "get",
-          url: "{{url('')}}/updateNotife?count={{$count}}",
-          success: function (response)
-          {
-              if(response)
-              {
-                  var count = $('.notifeCount').html();
-                  $('.notifeCount').html(response.count); 
-
-                  if(response.refresh == 1){
-                      location.reload();
-                  }
-              }
-          }
-      });
-  }, 60000);
-}, 500);
-
-</script>
