@@ -402,8 +402,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -625,8 +625,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
     );
 
     public static $classMap = array (
+        'App\\Class\\Crawled\\digikala' => __DIR__ . '/../..' . '/app/Class/Crawled/digikala.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Crawler' => __DIR__ . '/../..' . '/app/Crawler.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Crawler' => __DIR__ . '/../..' . '/app/Http/Controllers/Crawler.php',
@@ -641,6 +641,8 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Livewire\\Crawler' => __DIR__ . '/../..' . '/app/Livewire/Crawler.php',
+        'App\\Models\\Crawled' => __DIR__ . '/../..' . '/app/Models/Crawled.php',
+        'App\\Models\\Crawler' => __DIR__ . '/../..' . '/app/Models/Crawler.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -3949,6 +3951,7 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\RemovePrefetchModifierFromWireClickDirective' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/RemovePrefetchModifierFromWireClickDirective.php',
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\RemovePreventModifierFromWireSubmitDirective' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/RemovePreventModifierFromWireSubmitDirective.php',
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\ReplaceEmitWithDispatch' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/ReplaceEmitWithDispatch.php',
+        'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\ReplaceTemporaryUploadedFileNamespace' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/ReplaceTemporaryUploadedFileNamespace.php',
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\RepublishNavigation' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/RepublishNavigation.php',
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\ThirdPartyUpgradeNotice' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/ThirdPartyUpgradeNotice.php',
         'Livewire\\Features\\SupportConsoleCommands\\Commands\\Upgrade\\UpgradeAlpineInstructions' => __DIR__ . '/..' . '/livewire/livewire/src/Features/SupportConsoleCommands/Commands/Upgrade/UpgradeAlpineInstructions.php',
@@ -6567,11 +6570,13 @@ class ComposerStaticInit9c491b8531eec05ba41a11d9276a5749
         'Symfony\\Component\\CssSelector\\Node\\ElementNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/ElementNode.php',
         'Symfony\\Component\\CssSelector\\Node\\FunctionNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/FunctionNode.php',
         'Symfony\\Component\\CssSelector\\Node\\HashNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/HashNode.php',
+        'Symfony\\Component\\CssSelector\\Node\\MatchingNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/MatchingNode.php',
         'Symfony\\Component\\CssSelector\\Node\\NegationNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/NegationNode.php',
         'Symfony\\Component\\CssSelector\\Node\\NodeInterface' => __DIR__ . '/..' . '/symfony/css-selector/Node/NodeInterface.php',
         'Symfony\\Component\\CssSelector\\Node\\PseudoNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/PseudoNode.php',
         'Symfony\\Component\\CssSelector\\Node\\SelectorNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/SelectorNode.php',
         'Symfony\\Component\\CssSelector\\Node\\Specificity' => __DIR__ . '/..' . '/symfony/css-selector/Node/Specificity.php',
+        'Symfony\\Component\\CssSelector\\Node\\SpecificityAdjustmentNode' => __DIR__ . '/..' . '/symfony/css-selector/Node/SpecificityAdjustmentNode.php',
         'Symfony\\Component\\CssSelector\\Parser\\Handler\\CommentHandler' => __DIR__ . '/..' . '/symfony/css-selector/Parser/Handler/CommentHandler.php',
         'Symfony\\Component\\CssSelector\\Parser\\Handler\\HandlerInterface' => __DIR__ . '/..' . '/symfony/css-selector/Parser/Handler/HandlerInterface.php',
         'Symfony\\Component\\CssSelector\\Parser\\Handler\\HashHandler' => __DIR__ . '/..' . '/symfony/css-selector/Parser/Handler/HashHandler.php',

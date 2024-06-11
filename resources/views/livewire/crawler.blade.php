@@ -20,28 +20,13 @@
                 @if($crawler)
                
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="">تعداد واکشی</label>
-                                <input type="text" 
-                                class="form-control border border-1" name="" id="" value='{{$crawler->max}}' aria-describedby="helpId" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="">هر چند ثانیه یکبار</label>
-                                <input type="text" 
-                                class="form-control" name="" id="" value='{{$crawler->every_secend}}' aria-describedby="helpId" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
                         
-                        </div>
+
                         <div class="col-sm-3">
                             @if ($crawler->type == 'json')
-                            <button type="submit" wire:click='readjson()' class="btn btn-primary">شروع خزش</button>
-                            @elseif($crawler->type == 'urlk')
-                            <button type="submit" wire:click='startCrawler()' class="btn btn-primary">شروع خزش</button>
+                                <button type="submit" wire:click='readjson()' class="btn btn-primary">شروع خزش</button>
+                            @elseif($crawler->type == 'url')
+                                <button type="submit" wire:click='startCrawler()' class="btn btn-primary">شروع خزش</button>
                             @endif
                            
                         </div>
