@@ -1,5 +1,8 @@
 <?php
 
+use Nette\Utils\Random;
+use Illuminate\Support\Facades\Storage; 
+
 if (! function_exists('empty2')) {
     function empty2($data) {
         if( is_object($data) && (array) $data !== [])
@@ -16,13 +19,14 @@ if (! function_exists('empty2')) {
 if (! function_exists('uploadUrl')) {
     function uploadUrl($url,$dir)
     {
-            $file_name = basename($url); 
-            $file_path = $dir . $file_name;
-            if(!is_dir($file_path)) mkdir($file_path);
-                Illuminate\Support\Facades\Storage::makeDirectory(public_path().'/'.$file_path);
-            
-            if (file_put_contents($file_path, file_get_contents($url))) 
-                return $file_path;
+            $link = explode('.jpg',$url);
+            $link = $link[0].'.jpg';
+
+            if(!is_dir($dir)) mkdir($dir,0777,true);
+
+            $fileName = $dir.'/'.basename($link);
+            if (file_put_contents($fileName, file_get_contents($link)))
+                return $fileName;
             else
                 echo $url; 
     }
