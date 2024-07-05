@@ -60,7 +60,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th> <a wire:click='addAllProduct()' class="btn btn-success">افزودن گروهی همه محصولات</a> </th>
+                    <th> 
+                        <a wire:click='addAllProduct()' class="btn btn-success">افزودن گروهی همه محصولات</a> 
+                    </th>
                 </tr>
             </tfoot>
         </table>

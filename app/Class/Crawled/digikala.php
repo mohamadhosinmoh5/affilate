@@ -45,7 +45,7 @@ class digikala {
         $idProduct = explode('/',$link[1])[0];
         $product = file_get_contents(digikala::PRODUCT_URL.$idProduct.'/');
         $data = json_decode($product)->data->product;
-       
+        // dd($data);
         return [
             'id' => $data->id,
             'title_fa' => $data->title_fa,
@@ -57,11 +57,16 @@ class digikala {
             'price' => $data->default_variant->price,
             'comments_count' => $data->comments_count,
             'videos' => $data->videos,
-            'review' => $data->review,
+            'attributes' => $data->review->attributes,
+            'rating' => $data->rating,
+            'description' => (property_exists($data->review,'description') && !empty2($data->review->description)) ? $data->review->description : '',
             'suggestion' => $data->suggestion,
             'last_comments' => $data->last_comments,
             'last_questions' => $data->last_questions,
-            'review' => $data->review,
+            'badge' => (property_exists($data,'badges') && !empty2($data->badges)) ? $data->badges :  '',
+            'warranty' => (property_exists($data,'warranty') && !empty2($data->warranty)) ? $data->warranty->title_fa :  '',
+            'order_limit'=> property_exists($data,'price') && !empty2($data->price) ? $data->price->order_limit : 0,
+            'seller' => $data->default_variant->seller,
         ];  
     }
 
