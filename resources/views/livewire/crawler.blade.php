@@ -48,20 +48,33 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $product_details = [];
+                @endphp
                 @foreach ($results['data'] as $item)
                 <tr>
                         <td>{!!$item['title_fa']!!}</td>
                         <td><a href="{!!$item['title_fa']!!}"> {!!$item['title_fa']!!} </a> </td>
                         <td>{!!$item['product_type']!!}</td>
                         <td><img width="100px" src="{!!$item['mainImage']!!}" alt=""></td>
-                        <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>    
+                        <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>  
+                        @php
+                            $product_details[] = $item;
+                        @endphp  
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
+
                 <tr>
                     <th> 
-                        <a wire:click='addAllProduct()' class="btn btn-success">افزودن گروهی همه محصولات</a> 
+                       <div class="row">
+                            <div class="col-6"><a wire:click='$set("page",{{$page--}})'>صفحه قبلی </a> </div>
+                            <div class="col-6"> <a wire:click='$set("page",{{$page++}})'>صفحه بعدی </a> </div>
+                        </div> 
+                    </th>
+                    <th> 
+                        <a wire:click='addAllProduct({!!json_encode($product_details)!!})' class="btn btn-success">افزودن گروهی همه محصولات</a> 
                     </th>
                 </tr>
             </tfoot>
