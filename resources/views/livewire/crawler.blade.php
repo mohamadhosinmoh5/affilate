@@ -80,4 +80,24 @@
             </tfoot>
         </table>
     @endif
+
+    @if (!empty2($notif))
+        <div id="modal" class="modal" >
+            <img src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
+                <span class="title">خطا در عملیات</span>
+           
+                @foreach ($notif as $item)
+                    <p>{!!$item!!}</p>
+                @endforeach
+                
+                <div id="button" class="button">بستن</div>
+        </div>
+    @endif
+        
+        <script>
+            document.getElementById('button').addEventListener('click',()=>{
+                document.getElementById('modal').style.display = 'none';
+            })
+         </script>
 </div>
+

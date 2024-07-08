@@ -1,7 +1,7 @@
 @extends('voyager::master')
 
 @section('head')
-       @livewireStyles 
+       <link rel="stylesheet" href="{{url('assets/css/style.css')}}"> 
 @endsection
 
 @section('content')
@@ -10,5 +10,5 @@
 @endsection
 
 @section('javascript')
-       @livewireScripts
+
 @endsection

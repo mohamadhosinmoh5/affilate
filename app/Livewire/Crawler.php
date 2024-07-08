@@ -14,10 +14,10 @@ class Crawler extends Component
     public $results = [];
     public $product;
     public $Allproduct;
+    public $notif= [];
 
     public function setCrawler($id)
     {
-       
         $this->crawler = App\Models\Crawler::Find((int)$id);
     }
 
@@ -27,6 +27,7 @@ class Crawler extends Component
         {
             $digiCrawl = new digikala;
             $this->results = $digiCrawl->crawler($this->crawler->url,$this->page);
+            
         }
     }
 
@@ -36,8 +37,7 @@ class Crawler extends Component
         {
             $digiCrawl = new digikala;
             if($res = $digiCrawl->crawlProduct($p_Detail))
-                dd($res);
-                return true;
+                $this->notif[] = $res;
         }
     }
     public function addToAllProduct($product)
@@ -51,8 +51,7 @@ class Crawler extends Component
         {
             $digiCrawl = new digikala;
             if($res = $digiCrawl->crawlMultiProduct($details))
-                dd($res);
-                return true;
+                $this->notif[] = $res;
         }
     }
  

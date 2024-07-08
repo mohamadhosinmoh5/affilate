@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+
+.modal {
+    position: fixed;
+	width: 380px;
+	height: auto;
+    top: 50%;
+    right: 50%;
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: 4px 8px 12px 0 rgba(0,0,0,0.4);
+	text-align: center;
+    display: block;
+	overflow: hidden;
+	animation: show-modal .7s ease-in-out;
+	
+	&.hide {
+		animation: hide-modal .6s ease-in-out both;
+	}
+	
+	img {
+		margin-top: 24px;
+	}
+	
+	.title {
+		display: block;
+		font-size: 18px;
+		line-height: 24px;
+		font-weight: 400;
+		margin: 14px 0 5px 0;
+	}
+	
+	p {
+		font-size: 14px;
+		font-weight: 300;
+		line-height: 19px;
+		margin: 0;
+		padding: 0 30px;
+	}
+	
+	.button {
+		position: absolute;
+		height: 40px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #F65656;
+		color: #fff;
+		line-height: 40px;
+		font-size: 14px;
+		font-weight: 400;
+		cursor: pointer;
+		transition: background .3s ease-in-out;
+		
+		&:hover {
+			background: #EC3434;
+		}
+		
+	}
+	
+}
+
+@keyframes show-modal {
+	0% {
+		transform: scale(0);
+	}
+	60% {
+		transform: scale(1.1);
+	}
+	80% {
+		transform: scale(.95);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes hide-modal {
+	0% {
+		transform: scale(1);
+	}
+	20% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}

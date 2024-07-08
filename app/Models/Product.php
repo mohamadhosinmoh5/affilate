@@ -25,4 +25,15 @@ class Product extends Model
     {
         return File::Where(['type_id' => $this->id,'file_type' => Type::FILE_TYPE_Video,'type' => Type::TYPE_PRODUCT ])->get();
     }
+
+
+    public function productInfo()
+    {
+        return $this->hasOne(ProductInfo::class, 'product_id');
+    }
+
+    public function productAttribute()
+    {
+        return $this->hasMany(ProductAttribute::class, 'product_id');
+    }
 }

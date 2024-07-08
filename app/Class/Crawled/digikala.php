@@ -19,6 +19,7 @@ class digikala {
     const STATUS_SUCCESS = 1;
 
     public $product;
+    public $errors=[];
 
     public function crawler($categoryUrl,$page) 
     {
@@ -55,7 +56,7 @@ class digikala {
       
         $link = explode('dkp-',$p_detail['url']);
         $idProduct = explode('/',$link[1])[0];
-        if(!Product::Where(['product_id' => $idProduct])->first()){
+        if(!$productExist = Product::Where(['product_id' => $idProduct])->first()){
             try {
                 $product = file_get_contents(digikala::PRODUCT_URL.$idProduct.'/');
                 $data = json_decode($product)->data->product;
@@ -142,29 +143,28 @@ class digikala {
                     $crawled->Save();
 
 
-                    return $this->product;
+                    return $this->product['title_fa']."با موفقیت ایجاد شد ";
                 }
             } catch (\Throwable $th) {
-                return false;
+                return $this->errors[] = 'خطا در ایجاد محصول';
             }
            
 
         }else{
-            return false;
+            return $this->errors[] = "محصول  ".$productExist->productInfo->title_fa." از قبل موجود می باشد";
         }
     }
 
 
     public function crawlMultiProduct($p_details)
     {
-        $success = [];
+        $result=[];
         foreach ($p_details as $key => $p_detail) {
-            if($product = $this->crawlProduct($p_detail))
-                $success[$product['title_fa']] = $product['id'];
+            $result[] = $this->crawlProduct($p_detail);
         }
 
-        if(!empty2($success))
-            return $success;
+        if(!empty2($result))
+            return $result;
         else
             return false;
     }
