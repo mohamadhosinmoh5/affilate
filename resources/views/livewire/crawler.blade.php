@@ -57,6 +57,13 @@
                         <td><a href="{!!$item['title_fa']!!}"> {!!$item['title_fa']!!} </a> </td>
                         <td>{!!$item['product_type']!!}</td>
                         <td><img width="100px" src="{!!$item['mainImage']!!}" alt=""></td>
+                        <td>
+                            @if ($item['status'] ==1)
+                                <div class="alert alert-success">کاوش شده</div>
+                                @else
+                                <div class="alert alert-danger">کاوش نشده</div>
+                            @endif
+                        </td>
                         <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>  
                         @php
                             $product_details[] = $item;
@@ -69,8 +76,8 @@
                 <tr>
                     <th> 
                        <div class="row">
-                            <div class="col-6"><a wire:click='$set("page",{{$page--}})'>صفحه قبلی </a> </div>
-                            <div class="col-6"> <a wire:click='$set("page",{{$page++}})'>صفحه بعدی </a> </div>
+                            <div class="col-6"><a href="#" wire:click='crawlPage({{$page--}})'>صفحه قبلی </a> </div>
+                            <div class="col-6"> <a href="#" wire:click='crawlPage({{$page++}})'>صفحه بعدی </a> </div>
                         </div> 
                     </th>
                     <th> 
@@ -87,7 +94,7 @@
                 <span class="title">خطا در عملیات</span>
            
                 @foreach ($notif as $item)
-                    <p>{!!$item!!}</p>
+                        <p>{!!$item!!}</p>  
                 @endforeach
                 
                 <div id="button" class="button">بستن</div>

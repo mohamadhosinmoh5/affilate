@@ -31,13 +31,20 @@ class Crawler extends Component
         }
     }
 
+
+    public function crawlPage($page)
+    {
+        $this->page = $page;
+        $this->readjson();
+    }
+
     public function addProduct($p_Detail)
     {
         if($this->crawler->site == 'digikala')
         {
             $digiCrawl = new digikala;
             if($res = $digiCrawl->crawlProduct($p_Detail))
-                $this->notif[] = $res;
+                $this->notif = $res;
         }
     }
     public function addToAllProduct($product)
@@ -51,7 +58,7 @@ class Crawler extends Component
         {
             $digiCrawl = new digikala;
             if($res = $digiCrawl->crawlMultiProduct($details))
-                $this->notif[] = $res;
+                $this->notif = $res;
         }
     }
  

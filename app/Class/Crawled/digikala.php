@@ -20,6 +20,7 @@ class digikala {
 
     public $product;
     public $errors=[];
+    public $success=[];
 
     public function crawler($categoryUrl,$page) 
     {
@@ -27,8 +28,8 @@ class digikala {
         $json = file_get_contents(digikala::API_URL.$categoryUrl.'/search/?has_selling_stock=1&page='.$page);
         // $json = file_get_contents('https://api.digikala.com/v1/categories/notebook-netbook-ultrabook/search/?has_selling_stock=1&page=1');
 
+       
         $datas = json_decode($json)->data->products;
-        // dd(json_decode($json)->data);
         $results = [];
         $results['head'] = [
             'عنوان',
@@ -36,14 +37,29 @@ class digikala {
             'نوع محصول',
             'تصویر محصول',
         ];
+
+
+
         foreach ($datas as $key => $value) {
-            $results['data'][] = [
-                'title_fa' => $value->title_fa,
-                'title_en' => $value->title_en,
-                'url' => digikala::SITE_URL.$value->url->uri,
-                'product_type' => $value->product_type,
-                'mainImage' => $value->images->main->url[0],
-            ];
+            if(!$productExist = Product::Where(['product_id' => $value->id])->first()){
+                $results['data'][] = [
+                    'title_fa' => $value->title_fa,
+                    'title_en' => $value->title_en,
+                    'url' => digikala::SITE_URL.$value->url->uri,
+                    'product_type' => $value->product_type,
+                    'mainImage' => $value->images->main->url[0],
+                    'status' => 0
+                ];
+             }else{
+                $results['data'][] = [
+                    'title_fa' => $productExist->productInfo->title_fa,
+                    'title_en' => $productExist->productInfo->title_en,
+                    'url' => $productExist->site_url,
+                    'product_type' => $value->product_type,
+                    'mainImage' => $productExist->mainImage,
+                    'status' => 1
+                ];
+             }
         }
 
         return $results;
@@ -142,16 +158,19 @@ class digikala {
                     $crawled->crawled_id = $this->product['id'];
                     $crawled->Save();
 
+                    $this->success[] = $this->product['title_fa']."با موفقیت ایجاد شد ";
 
-                    return $this->product['title_fa']."با موفقیت ایجاد شد ";
+                    return $this->success;
                 }
             } catch (\Throwable $th) {
-                return $this->errors[] = 'خطا در ایجاد محصول';
+                 $this->errors[] = 'خطا در ایجاد محصول';
+                return $this->errors;
             }
            
 
         }else{
-            return $this->errors[] = "محصول  ".$productExist->productInfo->title_fa." از قبل موجود می باشد";
+            $this->errors[] = "محصول  ".$productExist->productInfo->title_fa." از قبل موجود می باشد";
+            return $this->errors;
         }
     }
 
