@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App as App;
 use App\Class\crawled\digikala;
+use Illuminate\Support\Facades\DB;
 
 class Crawler extends Component
 {
@@ -18,7 +19,7 @@ class Crawler extends Component
 
     public function setCrawler($id)
     {
-        $this->crawler = App\Models\Crawler::Find((int)$id);
+        $this->crawler =  DB::table('crawlers')->Find((int)$id);
     }
 
     public function readjson()
@@ -64,7 +65,7 @@ class Crawler extends Component
  
     public function render()
     {
-        $this->allCrawlers = App\Models\Crawler::all();
+        $this->allCrawlers = DB::table('crawlers')->get();
         return view('livewire.crawler');
     }
 

@@ -8,6 +8,8 @@ trait ColumnFillable
 {
     public function getFillable()
     {
+      
         return Schema::getColumnListing($this->getTable());
+        
     }
 }

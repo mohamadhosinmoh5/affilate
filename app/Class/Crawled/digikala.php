@@ -1,6 +1,7 @@
 <?php
 namespace App\Class\Crawled;
 
+use App\class\db\Tb;
 use App\Models\Crawled;
 use App\Models\ProductInfo;
 use Symfony\Component\DomCrawler\Crawler as Crawl;
@@ -38,10 +39,18 @@ class digikala {
             'تصویر محصول',
         ];
 
+        $ids = array_column($datas,'id');
+        $exists = Tb::get('products')
+                        ->join('product_infos','products.id','=','product_infos.product_id')
+                        ->whereIn('products.product_id',$ids)
+                        ->get()
+                        ->keyBy('product_id')
+                    ;
+        $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());    
 
 
         foreach ($datas as $key => $value) {
-            if(!$productExist = Product::Where(['product_id' => $value->id])->first()){
+            if(in_array($value->id,$uniqIds)){
                 $results['data'][] = [
                     'title_fa' => $value->title_fa,
                     'title_en' => $value->title_en,
@@ -51,6 +60,7 @@ class digikala {
                     'status' => 0
                 ];
              }else{
+                $productExist = $exists[$value->id];
                 $results['data'][] = [
                     'title_fa' => $productExist->productInfo->title_fa,
                     'title_en' => $productExist->productInfo->title_en,
