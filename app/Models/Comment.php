@@ -7,7 +7,5 @@ use App\trait\ColumnFillable;
 
 class Comment extends Model
 {
-
-    
     use ColumnFillable;
 }
