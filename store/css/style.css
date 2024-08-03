@@ -1,0 +1,54 @@
+
+.search-icon {
+    margin: 0 10px;
+
+}
+
+.display-none {
+    display: none;
+}
+
+
+.Menus li{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.Menus li a{
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+
+}
+
+.Menu-child{
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    background: rgb(233, 232, 232);
+    padding: 5vh;
+    box-shadow: 1px 1px 10px 1px #e4e3e3;
+}
+
+.Menu-child ul {
+    display: none;
+}
+
+.Menu-child ul li a{
+    text-decoration: none;
+    color: rgb(49, 49, 49);
+
+}
+
+.blur{
+    filter: blur(5px);
+}
+
+
+.active {
+    display:block !important;
+    transition: 2s ease-in-out all;
+    -webkit-transition: 2s ease-in-out all;
+    -moz-transition: 2s ease-in-out all;
+    -ms-transition: 2s ease-in-out all;
+    -o-transition: 2s ease-in-out all;
+}
