@@ -46,7 +46,7 @@ class digikala {
                         ->get()
                         ->keyBy('product_id')
                     ;
-        $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());    
+        $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());
 
 
         foreach ($datas as $key => $value) {
@@ -83,7 +83,7 @@ class digikala {
         $link = explode('dkp-',$p_detail['url']);
         $idProduct = explode('/',$link[1])[0];
         if(!$productExist = Product::Where(['product_id' => $idProduct])->first()){
-            try {
+            // try {
                 $product = file_get_contents(digikala::PRODUCT_URL.$idProduct.'/');
                 $data = json_decode($product)->data->product;
                 
@@ -172,10 +172,10 @@ class digikala {
 
                     return $this->success;
                 }
-            } catch (\Throwable $th) {
+            // } catch (\Throwable $th) {
                  $this->errors[] = 'خطا در ایجاد محصول';
                 return $this->errors;
-            }
+            // }
            
 
         }else{

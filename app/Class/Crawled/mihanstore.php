@@ -51,7 +51,7 @@ class MihanStore {
     
     
 
-    public function crawler($catId,$page) 
+    public function crawler($catId,$page)
     {
 
     // URL پایه دسته‌بندی
@@ -72,7 +72,7 @@ class MihanStore {
         // $content = file_get_contents($current_url);
         $content = Http::get($current_url);
         // $content = $content->body;
-        dd($content);
+        dd($content->body());
         if ($content) {
             // بارگذاری DOM
             $dom = new \DOMDocument();

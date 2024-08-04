@@ -51,7 +51,7 @@
                 @php
                     $product_details = [];
                 @endphp
-                @foreach ($results['data'] as $item)
+                @foreach ($results['data'] as $key => $item)
                 <tr>
                         <td>{!!$item['title_fa']!!}</td>
                         <td><a href="{!!$item['title_fa']!!}"> {!!$item['title_fa']!!} </a> </td>
@@ -64,37 +64,46 @@
                                 <div class="alert alert-danger">کاوش نشده</div>
                             @endif
                         </td>
-                        <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>  
+                        <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>
+                       
                         @php
                             $product_details[] = $item;
-                        @endphp  
+                        @endphp
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
-
                 <tr>
-                    <th> 
+                    <th>
                        <div class="row">
-                            <div class="col-6"><a href="#" wire:click='crawlPage({{$page--}})'>صفحه قبلی </a> </div>
-                            <div class="col-6"> <a href="#" wire:click='crawlPage({{$page++}})'>صفحه بعدی </a> </div>
-                        </div> 
+                            <div class="col-6"><a href="#" wire:click='crawlPage({{$page-1}})'>صفحه قبلی </a> </div>
+                            <div class="col-6"> <a href="#" wire:click='crawlPage({{$page+1}})'>صفحه بعدی </a> </div>
+                        </div>
                     </th>
-                    <th> 
+                    <th>
                         <a wire:click='addAllProduct({!!json_encode($product_details)!!})' class="btn btn-success">افزودن گروهی همه محصولات</a> 
                     </th>
                 </tr>
             </tfoot>
         </table>
     @endif
-
+    <div wire:loading class="fixed-Loader">
+        <div  class="loader"></div>
+    </div>
+  
     @if (!empty2($notif))
         <div id="modal" class="modal" >
             <img src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
                 <span class="title">خطا در عملیات</span>
            
                 @foreach ($notif as $item)
-                        <p>{!!$item!!}</p>  
+                    @if (!is_array($item))
+                        <p>{!!$item!!}</p>
+                    @else
+                        @foreach ($item as $data)
+                            <p>{!!$data!!}</p>
+                        @endforeach
+                    @endif
                 @endforeach
                 
                 <div id="button" class="button">بستن</div>
