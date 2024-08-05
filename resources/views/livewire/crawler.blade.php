@@ -18,9 +18,7 @@
 
             <div class="col-sm-6">
                 @if($crawler)
-               
                     <div class="row">
-                        
 
                         <div class="col-sm-3">
                             @if ($crawler->type == 'json')

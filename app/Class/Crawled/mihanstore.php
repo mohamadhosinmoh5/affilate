@@ -111,7 +111,7 @@ class MihanStore {
         echo $product . "\n";
     }
     
-        // $json = file_get_contents('https://api.digikala.com/v1/categories/notebook-netbook-ultrabook/search/?has_selling_stock=1&page=1');
+        // $json = file_get_contents('https://api.Digikala.com/v1/categories/notebook-netbook-ultrabook/search/?has_selling_stock=1&page=1');
 
        
         $datas = null;
@@ -132,7 +132,7 @@ class MihanStore {
                 $results['data'][] = [
                     'title_fa' => $value->title_fa,
                     'title_en' => $value->title_en,
-                    'url' => digikala::SITE_URL.$value->url->uri,
+                    'url' => Digikala::SITE_URL.$value->url->uri,
                     'product_type' => $value->product_type,
                     'mainImage' => $value->images->main->url[0],
                     'status' => 0
@@ -161,7 +161,7 @@ class MihanStore {
         
         if(true){
             try {
-                $product = file_get_contents(digikala::PRODUCT_URL.$idProduct.'/');
+                $product = file_get_contents(Digikala::PRODUCT_URL.$idProduct.'/');
                 $data = json_decode($product)->data->product;
                 
                 $this->product =  [

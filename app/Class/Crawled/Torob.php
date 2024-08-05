@@ -11,11 +11,12 @@ use App\Models\Type;
 use App\Models\ProductAttribute;
 use PhpParser\Node\Stmt\TryCatch;
 
-class Digikala {
+class Torob {
 
-    const API_URL = "https://api.digikala.com/v1/categories/";
-    const PRODUCT_URL = "https://api.digikala.com/v2/product/";
-    const SITE_URL = 'https://digikala.com';
+    const API_URL = "https://api.torob.com/v4/base-product/search/?";
+    const PRODUCT_URL = "https://api.torob.com/v4/base-product/details-log-click/?prk=";
+    const SITE_URL = 'https://torob.com';
+    const SIMILAR_URL_PRODUCT = 'https://api.torob.com/v4/base-product/similar-base-product/?page=0&prk=60f90a56-f971-434b-a1de-fc602e629b53';
     
     const STATUS_SUCCESS = 1;
 
@@ -26,11 +27,11 @@ class Digikala {
     public function crawler($categoryUrl,$page) 
     {
 
-        $json = file_get_contents(Digikala::API_URL.$categoryUrl.'/search/?has_selling_stock=1&page='.$page);
-        // $json = file_get_contents('https://api.digikala.com/v1/categories/notebook-netbook-ultrabook/search/?has_selling_stock=1&page=1');
+        $json = file_get_contents(Torob::API_URL.$categoryUrl.'&page='.$page);
+        // $json = file_get_contents('https://api.Digikala.com/v1/categories/notebook-netbook-ultrabook/search/?has_selling_stock=1&page=1');
 
-       
-        $datas = json_decode($json)->data->products;
+        $datas = json_decode($json)->results;
+        
         $results = [];
         $results['head'] = [
             'عنوان',
@@ -39,7 +40,7 @@ class Digikala {
             'تصویر محصول',
         ];
 
-        $ids = array_column($datas,'id');
+        $ids = array_column($datas,'random_key');
         $exists = Tb::get('products')
                         ->join('product_infos','products.id','=','product_infos.product_id')
                         ->whereIn('products.product_id',$ids)
@@ -50,13 +51,13 @@ class Digikala {
 
 
         foreach ($datas as $key => $value) {
-            if(in_array($value->id,$uniqIds)){
+            if(in_array($value->random_key,$uniqIds)){
                 $results['data'][] = [
-                    'title_fa' => $value->title_fa,
-                    'title_en' => $value->title_en,
-                    'url' => Digikala::SITE_URL.$value->url->uri,
-                    'product_type' => $value->product_type,
-                    'mainImage' => $value->images->main->url[0],
+                    'title_fa' => $value->name1,
+                    'title_en' => $value->name2,
+                    'url' => Torob::PRODUCT_URL.$value->random_key,
+                    'product_type' => $value->price_text_mode,
+                    'mainImage' => $value->image_url,
                     'status' => 0
                 ];
              }else{
