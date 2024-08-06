@@ -2,6 +2,7 @@
 namespace App\Class\Crawled;
 
 use App\class\db\Tb;
+use App\Class\helpers\Redirect;
 use App\Models\Crawled;
 use App\Models\ProductInfo;
 use Symfony\Component\DomCrawler\Crawler as Crawl;
@@ -10,6 +11,7 @@ use App\Models\File;
 use App\Models\Type;
 use App\Models\ProductAttribute;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Class\helpers\SearchOnline;
 
 class Torob {
 
@@ -80,37 +82,28 @@ class Torob {
 
     public function crawlProduct($p_detail)
     {
-      
-        $link = explode('dkp-',$p_detail['url']);
+        $link = explode('?prk=',$p_detail['url']);
         $idProduct = explode('/',$link[1])[0];
         if(!$productExist = Product::Where(['product_id' => $idProduct])->first()){
             // try {
-                $product = file_get_contents(Digikala::PRODUCT_URL.$idProduct.'/');
-                $data = json_decode($product)->data->product;
-                
+                $product = file_get_contents(Torob::PRODUCT_URL.$idProduct);
+                $data = json_decode($product);
+
                 $this->product =  [
-                    'id' => $data->id,
-                    'title_fa' => $data->title_fa,
-                    'title_en' => $data->title_en,
+                    'id' => $data->random_key,
+                    'title_fa' => $data->name1,
+                    'title_en' => $data->name2,
                     'url' => $p_detail['url'],
-                    'images' => $data->images->list,
-                    'mainImage' => $data->images->main->url[0],
-                    'colors' => $data->colors,
-                    'price' => $data->default_variant->price,
-                    'comments_count' => $data->comments_count,
-                    'videos' => $data->videos,
-                    'attributes' => $data->review->attributes,
-                    'rating' => $data->rating,
-                    'description' => (property_exists($data->review,'description') && !empty2($data->review->description)) ? $data->review->description : '',
-                    'suggestion' => $data->suggestion,
-                    'last_comments' => $data->last_comments,
-                    'last_questions' => $data->last_questions,
-                    'badge' => (property_exists($data,'badges') && !empty2($data->badges)) ? $data->badges :  '',
-                    'warranty' => (property_exists($data,'warranty') && !empty2($data->warranty)) ? $data->warranty->title_fa :  '',
-                    'order_limit'=> property_exists($data,'price') && !empty2($data->price) ? $data->price->order_limit : 0,
-                    'seller' => $data->default_variant->seller,
-                ];  
-    
+                    'images' => $data->media_urls,
+                    'mainImage' => $data->image_urls,
+                    'price' => $data->price,
+                    'videos' => null,
+                    'attributes' => $data->key_specs,
+                    'rating' => null,
+                    'description' => null,
+                    'seller' => $data->products_info->result,
+                ];
+                // dd($data);
                 if($this->product){
                     $product = new Product;
                     if($this->product['mainImage']){
@@ -118,9 +111,7 @@ class Torob {
                     }
                     $product->site_url = $this->product['url'];
                     
-                    $product->default_price = $this->product['price']->selling_price;
-                    $product->comments_count = $this->product['comments_count'];
-                    $product->suggestion = $this->product['suggestion']->count;
+                    $product->default_price = $this->product['price'];
                     $product->product_id = $this->product['id'];
                     $product->Save();
     
@@ -128,20 +119,8 @@ class Torob {
                     $productInfo->product_id = $product->id;
                     $productInfo->title_fa = $this->product['title_fa'];
                     $productInfo->title_en = $this->product['title_en'];
-                    $productInfo->description = $this->product['description'];
                     $productInfo->Save();   
     
-                    if(!empty2($this->product['videos'])){
-                        foreach ($this->product['videos'] as $key => $video) {
-                            $video = new File;
-                            $video->type = Type::TYPE_PRODUCT;
-                            $video->type_id = $product->id;
-                            $video->file_type = Type::FILE_TYPE_Video;
-                            $video->url = $video->url;
-                            $video->name = ' عکس'.$key.' '.$this->product['title_fa'];
-                            $video->Save();
-                        }
-                    }
     
                     foreach ($this->product['images'] as $key => $image) {
                         $images = new File;
@@ -164,7 +143,7 @@ class Torob {
                     $crawled = new Crawled;
                     $crawled->title = $this->product['title_fa'];
                     $crawled->url = $this->product['url'];
-                    $crawled->status = Digikala::STATUS_SUCCESS;
+                    $crawled->status = Torob::STATUS_SUCCESS;
                     $crawled->title = $this->product['title_fa'];
                     $crawled->crawled_id = $this->product['id'];
                     $crawled->Save();
@@ -177,7 +156,6 @@ class Torob {
                  $this->errors[] = 'خطا در ایجاد محصول';
                 return $this->errors;
             // }
-           
 
         }else{
             $this->errors[] = "محصول  ".$productExist->productInfo->title_fa." از قبل موجود می باشد";

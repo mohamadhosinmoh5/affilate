@@ -19,8 +19,14 @@ if (! function_exists('empty2')) {
 if (! function_exists('uploadUrl')) {
     function uploadUrl($url,$dir)
     {
-            $link = explode('.jpg',$url);
-            $link = $link[0].'.jpg';
+            if(str_contains($url,'.jpg')){
+                $link = explode('.jpg',$url);
+                $link = $link[0].'.jpg';
+            }elseif(str_contains('.webp',$url)){
+                $link = explode('.webp',$url);
+                $link = $link[0].'.webp';
+            }
+
 
             if(!is_dir($dir)) mkdir($dir,0777,true);
 

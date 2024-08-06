@@ -49,7 +49,7 @@
                 @php
                     $product_details = [];
                 @endphp
-                @foreach ($results['data'] as $key => $item)
+                @foreach($results['data'] as $key => $item)
                 <tr>
                         <td>{!!$item['title_fa']!!}</td>
                         <td><a href="{!!$item['title_fa']!!}"> {!!$item['title_fa']!!} </a> </td>

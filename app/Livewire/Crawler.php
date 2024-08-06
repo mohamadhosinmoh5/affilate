@@ -30,7 +30,6 @@ class Crawler extends Component
         {
             $torobCrawler = new Torob;
             $this->results = $torobCrawler->crawler($this->crawler->url,$this->page);
-            
         }
 
         if($this->crawler->site == 'digikala')
@@ -50,6 +49,14 @@ class Crawler extends Component
 
     public function addProduct($p_Detail)
     {
+
+        if($this->crawler->site == 'torob')
+        {
+            $torobCrawl = new Torob;
+            if($res = $torobCrawl->crawlProduct($p_Detail))
+                $this->notif = $res;
+        }
+
         if($this->crawler->site == 'Digikala')
         {
             $digiCrawl = new Digikala;
@@ -65,6 +72,14 @@ class Crawler extends Component
 
     public function addAllProduct($details)
     {
+
+        if($this->crawler->site == 'torob')
+        {
+            $digiCrawl = new Torob;
+            if($res = $digiCrawl->crawlMultiProduct($details))
+                $this->notif = $res;
+        }
+
         if($this->crawler->site == 'Digikala')
         {
             $digiCrawl = new Digikala;
