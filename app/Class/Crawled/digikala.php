@@ -109,14 +109,13 @@ class Digikala {
                     'order_limit'=> property_exists($data,'price') && !empty2($data->price) ? $data->price->order_limit : 0,
                     'seller' => $data->default_variant->seller,
                 ];  
-    
                 if($this->product){
                     $product = new Product;
                     if($this->product['mainImage']){
                         $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product');
                     }
                     $product->site_url = $this->product['url'];
-                    
+                    $product->title = $this->product['title_fa'];
                     $product->default_price = $this->product['price']->selling_price;
                     $product->comments_count = $this->product['comments_count'];
                     $product->suggestion = $this->product['suggestion']->count;

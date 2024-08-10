@@ -1,0 +1,683 @@
+.mt-4 {
+  margin-top: 0% !important;
+}
+
+.parent {
+  column-gap: 8px;
+  margin-bottom: 25px;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.tableDown{
+  display: flex;
+}
+
+.custom-card {
+  padding: 8px 16px;
+  border-radius: 32px;
+  width: 190.67px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+  border: 1px solid #f9fafb;
+  cursor: pointer;
+}
+
+.custom-card:hover{
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.08);
+}
+
+.filterActive {
+  background-color: #25b77a;
+}
+
+.filterActive span {
+  color: #ffffff !important;
+}
+
+.custom-card span {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: right;
+  color: #8a92a6;
+}
+
+/* Scrollbar Styles for WebKit Browsers */
+.smallCard {
+  width: 100%;
+  padding: 0 !important;
+}
+
+.custom-card-small::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.custom-card-small::-webkit-scrollbar-track {
+  background-color: transparent; /* Track color */
+}
+
+.custom-card-small::-webkit-scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+.custom-card-small scrollbar-track-piece {
+  background-color: transparent; /* Track color */
+}
+
+.custom-card-small scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+.custom-card-small {
+  /* width: 268px; */
+  padding: 16px;
+  border-radius: 16px;
+  /* border: 1px solid #8a92a6 !important; */
+  margin-bottom: 9px;
+  text-align: right;
+  gap: 8px;
+  opacity: 0.9;
+  background-color: #f9fafb;
+  height: 76vh;
+  overflow-y: auto;
+}
+
+.custom-card-small h4 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.36px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: right;
+  color: #000000;
+}
+
+.custom-card-small h6 {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: right;
+  color: #000000;
+}
+
+.custom-card-small label {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: right;
+  color: #8a92a6;
+}
+
+.custom-card-small input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: right;
+  color: #8a92a6;
+}
+
+.checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #8a92a6;
+  border-radius: 50%; /* Makes the checkbox circular */
+  display: inline-block; /* Ensures the circular shape */
+  vertical-align: middle; /* Aligns checkbox vertically */
+  cursor: pointer; /* Shows pointer cursor on hover */
+}
+
+.checkbox:checked {
+  background-color: #6781c4; /* Changes background color when checked */
+}
+
+.filter-input {
+  width: 256px;
+  height: 35px;
+  padding: 8px 16px;
+  border-radius: 32px;
+  border: 1px solid #8a92a6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #8a92a6;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9fafb;
+  min-width: 268px;
+  border: 1px solid #8a92a6;
+  border-radius: 16px;
+  z-index: 1;
+  padding: 16px;
+  opacity: 0.9;
+}
+
+.filter-input:hover .dropdown-content {
+  display: block;
+}
+
+.filter-checkbox {
+  display: flex;
+  /* align-items: center; */
+  margin: 8px 0;
+}
+
+.filter-checkbox input {
+  margin-left: 8px;
+}
+
+.select-box {
+  width: 100%;
+  height: 35px;
+  border: 1px solid #8a92a6;
+  border-radius: 32px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  color: #8a92a6;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+}
+
+.text-input {
+  width: 100%;
+  height: 35px;
+  border: 1px solid #8a92a6;
+  border-radius: 32px;
+  padding: 8px 16px;
+  /* margin-bottom: 8px; */
+  color: #8a92a6;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.datee {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+.btn {
+  width: 100%;
+  padding: 8px;
+  gap: 13px;
+  border-radius: 32px;
+  background-color: #0832de;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: center;
+}
+
+.btn:hover {
+  color: #ffffff;
+}
+
+.custom-card-large {
+  width: 100%;
+  border: 1px solid #C5C9D3 !important;
+  padding: 8px 0px;
+  border-radius: 24px;
+  margin-bottom: 9px;
+  height: 65vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-bottom: 25px;
+}
+
+.mt-5 {
+  margin-top: 0% !important;
+}
+
+/* Scrollbar Styles for WebKit Browsers */
+
+.custom-card-large::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px;
+}
+
+.custom-card-large::-webkit-scrollbar-track {
+  background-color: transparent; /* Track color */
+}
+
+.custom-card-large::-webkit-scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+.custom-card-large scrollbar-track-piece {
+  background-color: transparent; /* Track color */
+}
+
+.custom-card-large scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+#toEXCEL {
+  cursor: pointer;
+  background: #F9FAFB !important;
+  padding: 0px !important;
+  border: 1px solid #F9FAFB !important;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+#toEXCEL:hover{
+  color: #4d5ef3 !important;
+}
+
+.export {
+  display: flex;
+  /* justify-content: flex-end;
+  gap: 10px;
+  align-items: center; */
+}
+
+.row > [class*="col-"] {
+  margin-bottom: 0px !important;
+}
+
+.exportTable {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.36px;
+  text-align: right;
+  color: #001aff;
+  background-color: #F9FAFB;
+  border-radius: 24px;
+}
+
+.bottomExport {
+  display: flex;
+  padding: 8px 16px 8px 16px;
+  gap: 16px;
+  border-radius: 24px;
+  border: 1px solid #c5c9d3;
+  opacity: 0px;
+  align-items: center;
+  /* float: inline-start; */
+}
+
+.exportAll {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.36px;
+  text-align: right;
+  color: #001aff;
+  background-color: #F9FAFB;
+  border-radius: 24px;
+}
+
+.countExport {
+  display: flex;
+  /* flex-direction: column; */
+  text-align: right;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  text-align: right;
+  color: #8a92a6;
+  align-items: center;
+}
+
+.countExport span{
+  width: 55%;
+}
+
+.textInput {
+  width: 36%;
+  height: 35px;
+  border: 1px solid #8a92a6;
+  border-radius: 32px;
+  padding: 8px 10px;
+  /* margin-bottom: 8px; */
+  color: #8a92a6;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+}
+
+/* styles.css */
+
+.table {
+  position: relative;
+  border-collapse: collapse;
+  top: 10px;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-radius: 12px 12px 0px 0px;
+  /* overflow: hidden; */
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border: none;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #f9fafb !important;
+  color: #8a92a6;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: none;
+}
+
+/* Responsive table */
+.table-responsive {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: unset !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom styles for table headers */
+.thead-light th {
+  background-color: #f9fafb !important;
+  border-color: #dee2e6;
+  color: #8a92a6 !important;
+}
+
+/* Custom styles for edit and delete buttons */
+.edit-btn {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.delete-btn {
+  color: #dc3545;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Hover effects for buttons */
+.edit-btn:hover,
+.delete-btn:hover {
+  text-decoration: underline;
+}
+
+/* RTL styling */
+body {
+  direction: rtl;
+}
+
+.table th,
+.table td {
+  text-align: right;
+  background-color: #f0f3f7;
+  min-width: 150px;
+}
+
+.number button {
+  width: 252px;
+  height: 56px;
+  border: 1px solid black;
+  text-align: right;
+  border-radius: 32px;
+}
+
+.number button img {
+  margin-right: 120px;
+}
+
+.add {
+  width: 118px;
+  height: 56px;
+  margin-right: 5px;
+  border: 1px solid #25b77a;
+  border-radius: 36px;
+}
+
+.add img {
+  margin: 10px;
+  position: relative;
+  top: 3px;
+  margin-right: 25px;
+}
+
+.add p {
+  color: #25b77a;
+  /* margin: 0;
+  padding-left: 28px;
+  cursor: pointer; */
+}
+
+.delet {
+  width: 180px;
+  height: 56px;
+  /* margin-right: 5px; */
+  border: 1px solid #e40000;
+  border-radius: 36px;
+}
+
+.delet p {
+  color: #e40000;
+  cursor: pointer;
+}
+
+.delet img {
+  margin-right: 20px;
+  position: relative;
+  bottom: 5px;
+}
+
+.chinesh {
+  width: 106px;
+  height: 56px;
+  margin-right: 5px;
+  border: 1px solid #8a92a6;
+  border-radius: 36px;
+}
+
+.chinesh img {
+  margin-right: 22px;
+  position: relative;
+  bottom: 5px;
+}
+
+.chinesh p {
+  cursor: pointer;
+  color: #8a92a6;
+}
+
+.search-bar {
+  width: 366px;
+  margin-right: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex-grow: 1;
+  /* margin-left: 60px; */
+  position: relative;
+  left: 16%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 36px;
+  font-size: 16px;
+}
+
+.searchbutton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  position: relative;
+  margin-right: 0;
+  left: 10%;
+  border-radius: 36px;
+  width: 115px;
+  cursor: pointer;
+}
+
+.icons {
+  margin: 12px;
+  margin-top: 2px;
+}
+
+.detailes {
+  position: relative;
+  left: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, auto) 1fr;
+  gap: 10px;
+  align-items: center;
+  /* background-color: #f9f9f9; */
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.number select {
+  width: 252px;
+  height: 56px;
+  border: 1px solid black;
+  text-align: right;
+  border-radius: 32px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select2-container--default .select2-selection--single {
+  width: 100% !important;
+  height: 35px !important;
+  border: 1px solid #8a92a6 !important;
+  border-radius: 32px !important;
+  padding: 8px 16px !important;
+  margin-bottom: 8px !important;
+  color: #8a92a6 !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 19.36px !important;
+}
+
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  line-height: 18px;
+}
+
+.select2-container--open .select2-dropdown--below {
+  padding: 16px;
+  gap: 8px;
+  border-radius: 16px;
+  border: 1px solid #8a92a699;
+  opacity: 0px;
+}
+
+/* Scrollbar Styles for WebKit Browsers */
+
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px;
+}
+
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-track {
+  background-color: transparent; /* Track color */
+}
+
+.select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+.select2-container--default .select2-results>.select2-results__options scrollbar-track-piece {
+  background-color: transparent; /* Track color */
+}
+
+.select2-container--default .select2-results>.select2-results__options scrollbar-thumb {
+  background-color: #8a92a6; /* Thumb color */
+  border-radius: 8px; /* Border radius */
+}
+
+@media (max-width: 1410px) {
+  .textInput {
+      padding: 0px 0px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .tableDown {
+    flex-direction: column;
+  }
+  .parent{
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .col-sm-9 {
+    width: 100%;
+  }
+
+  .bottomExport {
+    display: flex;
+    padding: 8px 0px 8px 0px;
+    gap: 0px;
+    border-radius: 24px;
+    border: 1px solid #c5c9d3;
+    opacity: 0px;
+    align-items: center;
+  }
+
+  .textInput {
+    padding: 0px 6px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .textInput {
+      padding: 0px 0px;
+  }
+
+  .bottomExport {
+    flex-direction: column;
+  }
+}

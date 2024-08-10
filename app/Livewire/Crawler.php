@@ -57,7 +57,7 @@ class Crawler extends Component
                 $this->notif = $res;
         }
 
-        if($this->crawler->site == 'Digikala')
+        if($this->crawler->site == 'digikala')
         {
             $digiCrawl = new Digikala;
             if($res = $digiCrawl->crawlProduct($p_Detail))
@@ -80,12 +80,17 @@ class Crawler extends Component
                 $this->notif = $res;
         }
 
-        if($this->crawler->site == 'Digikala')
+        if($this->crawler->site == 'digikala')
         {
             $digiCrawl = new Digikala;
             if($res = $digiCrawl->crawlMultiProduct($details))
                 $this->notif = $res;
         }
+    }
+
+    public function closeModal()
+    {
+        $this->notif = null ;
     }
  
     public function render()

@@ -1,0 +1,191 @@
+/* styles.css */
+
+
+.table {
+    position: relative;
+    border-collapse: collapse;
+    top: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-radius: 12px 12px 0px 0px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border: none;
+
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #F9FAFB !important;
+    color: #8A92A6;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: none;
+
+}
+
+/* Responsive table */
+.table-responsive {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom styles for table headers */
+.thead-light th {
+    background-color: #F9FAFB !important;
+    border-color: #dee2e6;
+    color: #8A92A6 !important;
+
+}
+
+/* Custom styles for edit and delete buttons */
+.edit-btn {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.delete-btn {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hover effects for buttons */
+.edit-btn:hover,
+.delete-btn:hover {
+    text-decoration: underline;
+}
+
+/* RTL styling */
+body {
+    direction: rtl;
+}
+
+.table th,
+.table td {
+    text-align: right;
+    background-color: #f0f3f7;
+    min-width: 150px;
+}
+
+.number input {
+    width: 252px;
+    height: 56px;
+    border: 1px solid black;
+    border-radius: 32px;
+}
+
+.add {
+    width: 118px;
+    height: 56px;
+    margin-right: 5px;
+    border: 1px solid #25B77A;
+    border-radius: 36px;
+}
+
+.add img {
+    margin: 10px;
+    position: relative;
+    top: 3px;
+    margin-right: 25px;
+}
+
+.add p {
+    color: #25B77A;
+    margin: 0;
+    padding-left: 28px;
+    cursor: pointer;
+}
+
+.delet {
+    width: 180px;
+    height: 56px;
+    margin-right: 5px;
+    border: 1px solid #E40000;
+    border-radius: 36px;
+}
+
+.delet p {
+    color: #E40000;
+    cursor: pointer;
+}
+
+.delet img {
+    margin-right: 20px;
+    position: relative;
+    bottom: 5px;
+}
+
+.chinesh {
+    width: 106px;
+    height: 56px;
+    margin-right: 5px;
+    border: 1px solid #8A92A6;
+    border-radius: 36px;
+}
+
+.chinesh img {
+    margin-right: 22px;
+    position: relative;
+    bottom: 5px;
+}
+
+.chinesh p {
+    cursor: pointer;
+    color: #8A92A6;
+}
+
+.search-bar {
+    width: 366px;
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 36px;
+    font-size: 16px;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 36px;
+    width: 115px;
+    cursor: pointer;
+}
+
+.icons {
+    margin: 12px;
+    margin-top: 2px;
+}
+
+.detailes {
+    position: relative;
+    right: 20px;
+}

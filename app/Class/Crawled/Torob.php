@@ -88,14 +88,14 @@ class Torob {
             // try {
                 $product = file_get_contents(Torob::PRODUCT_URL.$idProduct);
                 $data = json_decode($product);
-
+           
                 $this->product =  [
                     'id' => $data->random_key,
                     'title_fa' => $data->name1,
                     'title_en' => $data->name2,
                     'url' => $p_detail['url'],
                     'images' => $data->media_urls,
-                    'mainImage' => $data->image_urls,
+                    'mainImage' => $data->image_url,
                     'price' => $data->price,
                     'videos' => null,
                     'attributes' => $data->key_specs,
@@ -106,6 +106,7 @@ class Torob {
                 // dd($data);
                 if($this->product){
                     $product = new Product;
+                    $product->title = $this->product['title_fa'];
                     if($this->product['mainImage']){
                         $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product');
                     }
@@ -119,7 +120,7 @@ class Torob {
                     $productInfo->product_id = $product->id;
                     $productInfo->title_fa = $this->product['title_fa'];
                     $productInfo->title_en = $this->product['title_en'];
-                    $productInfo->Save();   
+                    $productInfo->Save();
     
     
                     foreach ($this->product['images'] as $key => $image) {
@@ -131,14 +132,15 @@ class Torob {
                         $images->name = ' عکس'.$key.' '.$this->product['title_fa'];
                         $images->Save();
                     }
-    
-                    foreach ($this->product['attributes'] as $attribute) {
-                        $productAttribute = new ProductAttribute;
-                        $productAttribute->product_id = $product->id;
-                        $productAttribute->key = $attribute->title;
-                        $productAttribute->value = serialize($attribute->values);
-                        $productAttribute->Save();
-                    }
+                   
+                    if(!empty2($this->product['attributes']) && key_exists('items',$this->product['attributes']))
+                        foreach ($this->product['attributes']['items'] as $attribute) {
+                            $productAttribute = new ProductAttribute;
+                            $productAttribute->product_id = $product->id;
+                            $productAttribute->key = $attribute->key;
+                            $productAttribute->value = serialize($attribute->values);
+                            $productAttribute->Save();
+                        }
 
                     $crawled = new Crawled;
                     $crawled->title = $this->product['title_fa'];

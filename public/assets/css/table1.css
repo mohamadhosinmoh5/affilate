@@ -1,0 +1,451 @@
+/* styles.css */
+.table a {
+    text-decoration: none !important;
+    color: #8a92a6 !important;
+}
+
+.table {
+    /* position: relative; */
+    border-collapse: collapse !important;
+    top: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-radius: 12px 12px 0px 0px !important;
+    /* overflow: hidden !important; */
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    vertical-align: middle !important;
+    border: none !important;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f9fafb !important;
+    color: #8a92a6;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: none;
+}
+
+/* Responsive table */
+.table-responsive {
+    display: block;
+    width: 100%;
+    height: 68vh;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 5px;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background-color: transparent; /* Track color */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #8a92a6; /* Thumb color */
+    border-radius: 8px; /* Border radius */
+}
+
+.table-responsive scrollbar-track-piece {
+    background-color: transparent; /* Track color */
+}
+
+.table-responsive scrollbar-thumb {
+    background-color: #8a92a6; /* Thumb color */
+    border-radius: 8px; /* Border radius */
+}
+
+/* Custom styles for table headers */
+.thead-light th {
+    background-color: #f9fafb !important;
+    border-color: #dee2e6;
+    color: #8a92a6 !important;
+}
+
+/* Custom styles for edit and delete buttons */
+.edit-btn {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.delete-btn {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    /* background-color: #ffffff; */
+}
+
+/* Hover effects for buttons */
+.edit-btn:hover,
+.delete-btn:hover {
+    text-decoration: underline;
+}
+
+/* RTL styling */
+body {
+    direction: rtl;
+}
+
+.table th,
+.table td {
+    text-align: right !important;
+    background-color: #f0f3f7;
+    min-width: 150px;
+}
+
+.parentTop {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.number button {
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+    text-align: right;
+    border-radius: 32px;
+}
+
+.number button img {
+    margin-right: 120px;
+}
+
+.DropdownGharardad {
+    width: 40%;
+}
+
+.addButton {
+    width: 15%;
+}
+
+.add {
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    /* margin-right: 5px; */
+    border: 1px solid #25b77a !important;
+    border-radius: 36px !important;
+    display: flex !important;
+    justify-content: center !important;
+    /* align-items: flex-end !important; */
+    background-color: #fff;
+}
+
+.row_icon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* .add img {
+  margin: 10px;
+  position: relative;
+  top: 3px;
+  margin-right: 25px;
+} */
+
+.add p {
+    color: #25b77a;
+    /* margin: 0;
+    padding-left: 28px;
+    cursor: pointer; */
+}
+
+.deleteButton {
+    width: 30%;
+}
+
+.delet {
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    /* margin-right: 5px; */
+    border: 1px solid #e40000 !important;
+    border-radius: 36px !important;
+    display: flex !important;
+    justify-content: center !important;
+    /* align-items: flex-end !important; */
+    background-color: #ffffff;
+}
+
+.delet p {
+    color: #e40000;
+    cursor: pointer;
+}
+
+/* .delet img {
+  margin-right: 20px;
+  position: relative;
+  bottom: 5px;
+} */
+
+.arrangeButton {
+    width: 15%;
+}
+
+.chinesh {
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    /* margin-right: 5px; */
+    border: 1px solid #8a92a6 !important;
+    border-radius: 36px !important;
+    display: flex !important;
+    justify-content: center !important;
+    /* align-items: flex-end !important; */
+    background-color: #fff;
+}
+
+/* .chinesh img {
+  margin-right: 22px;
+  position: relative;
+  bottom: 5px;
+} */
+
+.chinesh p {
+    cursor: pointer;
+    color: #8a92a6;
+}
+
+/* .search-bar {
+    width: 366px;
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
+} */
+
+.search-bar {
+    position: relative;
+    width: 50%;
+}
+
+.search-bar img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.searchh {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 8px;
+}
+
+.search-input {
+    flex-grow: 1;
+    /* margin-left: 60px; */
+    /* position: relative; */
+    left: 1%;
+    border: 1px solid #ddd !important;
+    padding: 10px !important;
+    border-radius: 36px !important;
+    font-size: 16px !important;
+    padding: 10px 30px !important;
+    height: 35px !important;
+    font: 14px !important;
+}
+
+.searchButtons {
+    width: 20% !important;
+}
+
+.searchbutton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    /* padding: 10px 15px; */
+    /* position: relative; */
+    margin-right: 0;
+    /* left: 10%; */
+    border-radius: 36px;
+    width: 100%;
+    cursor: pointer;
+    height: 35px !important;
+}
+
+.icons {
+    margin: 12px;
+    margin-top: 2px;
+}
+
+.detailes {
+    /* position: relative; */
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, auto) 1fr;
+    gap: 10px;
+    align-items: center;
+    /* background-color: #f9f9f9; */
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.number select {
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+    text-align: right;
+    border-radius: 32px;
+    padding: 0px 5px;
+    background: white;
+}
+
+.number select option {
+    padding: 16px;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px;
+    opacity: 0px;
+}
+
+.custom-select-wrapper {
+    /* position: relative; */
+    display: inline-block;
+}
+
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+    padding: 0 7px !important;
+}
+
+.parentRight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 1400px) {
+    .parentRight {
+        flex-wrap: wrap;
+    }
+
+    .DropdownGharardad {
+        width: 100%;
+    }
+
+    .addButton {
+        width: 28%;
+    }
+
+    .deleteButton {
+        width: 38%;
+    }
+
+    .arrangeButton {
+        width: 28%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .search-bar {
+        width: 70%;
+    }
+
+    .addButton {
+        width: 48%;
+    }
+
+    .deleteButton {
+        width: 48%;
+    }
+
+    .arrangeButton {
+        width: 48%;
+    }
+}
+
+@media (max-width: 800px) {
+    .parentTop{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .addButton {
+        width: 100%;
+    }
+
+    .deleteButton {
+        width: 100%;
+    }
+
+    .arrangeButton {
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 75%;
+    }
+
+    .searchButtons {
+        width: 25% !important;
+    }
+}

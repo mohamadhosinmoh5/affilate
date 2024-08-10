@@ -1,0 +1,323 @@
+@font-face {
+  font-family: 'b_zar';
+  src: url('../fonts/B\ Zar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'b_titr';
+  src: url('../fonts/B\ Titr\ Bold.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Yekan';
+  src: url('../fonts/Yekan.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Bnazanin';
+  src: url('../fonts/B-NAZANIN.TTF') format('truetype');
+}
+
+.all_page {
+  border: 1px solid black;
+  width: 100%;
+  height: 1470px;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Bnazanin';
+}
+
+.issue{
+  font-family: 'Bnazanin';
+  margin-bottom: 0% !important;
+}
+
+.headerText {
+  display: block;
+  text-align: center;
+  position: relative;
+  font-family: 'Bnazanin';
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.HeaderText_Two {
+  font-family: 'Bnazanin';
+  font-size: 22px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.border {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.mainTxt {
+  text-align: center;
+  font-family: 'Bnazanin';
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.EditingTxt {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.txtBoldTwo {
+  display: block;
+  font-size: 24px;
+  text-align: start;
+  font-weight: 700;
+  position: relative;
+  /* right: 62px; */
+}
+
+.borders {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.txt {
+  text-align: start;
+  font-family: 'Bnazanin';
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  /* right: 60px; */
+}
+
+.textGroupe {
+  font-size: 11px;
+  font-family: 'Bnazanin';
+  font-weight: 700;
+
+}
+
+.txtCheck {
+  display: flex;
+  font-family: 'Bnazanin';
+  font-size: 30px;
+  text-align: start;
+}
+
+.HeaderText_Two {
+  font-family: 'Bnazanin';
+  font-size: 12px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.border {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.mainTxt {
+  text-align: center;
+  font-family: 'Bnazanin';
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.EditingTxt {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+
+
+.multitexts {
+  display: block;
+  font-family: 'Bnazanin';
+  font-weight: 700;
+  text-align: start;
+  margin: 5px;
+  font-size: 20px;
+  position: relative;
+}
+
+.borders {
+  border: 1px solid black;
+  width: 100%;
+}
+
+
+
+@media print {
+
+
+
+  /* .EditingTxt {
+
+    margin-left: 130px;
+
+    page-break-after: always;
+  } */
+}
+
+.txtCheck {
+  display: flex;
+  font-family: 'Bnazanin';
+  font-size: 12px;
+  text-align: start;
+}
+
+.txtBold {
+  display: block;
+  font-size: 24px;
+  text-align: start;
+  font-family: 'Bnazanin';
+  font-weight: 700;
+}
+
+/* .AllTxt {
+    display: block;
+    text-align: start;
+    font-family: 'Bnazanin';
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .AllTxt_two {
+    display: block;
+    text-align: center;
+    font-family: 'Bnazanin';
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .AllTxt_third {
+    display: block;
+    text-align: end;
+    font-family: 'Bnazanin';
+    font-size: 22px;
+    font-weight: 700;
+  } */
+
+.border_right {
+  border-right: 1px solid black;
+}
+
+.TextTitle {
+  text-align: start;
+  font-family: 'Bnazanin';
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.header {
+  font-weight: 700;
+  font-family: 'Bnazanin';
+}
+
+.form-check-label {
+  margin-right: 25px;
+  font-family: 'Bnazanin';
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.part {
+  margin-right: 30%;
+}
+
+.form-check input[type="checkbox"] {
+  accent-color: black;
+  content: 'Y';
+}
+
+
+/* Pre css */
+.page {
+  border: 1px solid black;
+  height: 1600px;
+  padding: 7px 20px;
+  margin: 7px 15px;
+  font-family: 'Bnazanin';
+}
+
+.header {
+  display: block;
+  text-align: center;
+}
+
+.border {
+  margin: 1px;
+  border: 1px solid black;
+  position: relative;
+}
+
+
+.txtCheck {
+  display: flex;
+  font-family: 'Bnazanin';
+  font-size: 22px;
+  text-align: start;
+}
+
+
+
+.Num {
+  font-size: 18px;
+  font-family: 'Bnazanin';
+  font-weight: 700;
+}
+
+.hi {
+  display: block;
+  text-align: start;
+  font-family: 'Bnazanin';
+  font-weight: 700;
+  margin: 2px 20px;
+  color: black;
+  font-size: 18px;
+  position: relative;
+}
+
+.multitext {
+  display: block;
+  text-align: start;
+  margin: 5px;
+  font-size: 22px;
+  position: relative;
+}
+
+.twice {
+  margin-left: 35%;
+}
+
+.third {
+  margin-left: 3%;
+
+}
+
+.num {
+  margin-left: 10%;
+  font-family: 'Bnazanin';
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nume {
+  position: relative;
+  left: 85px;
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  text-align: left;
+}
+
+.name {
+  position: relative;
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  text-align: left;
+  left: 140px;
+}

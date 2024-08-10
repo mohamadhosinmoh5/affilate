@@ -1,0 +1,187 @@
+.progress-container {
+
+    text-align: center;
+
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle--background {
+    fill: transparent;
+    stroke: #e6e6e6;
+    stroke-width: 10;
+}
+
+.progress-ring__circle--foreground,
+.progress-ring__circle--secondary {
+    fill: transparent;
+    stroke-width: 10;
+    stroke-linecap: round;
+    animation: progress-animation 2.1s ease-out forwards;
+}
+
+.progress-ring__circle--foreground {
+    stroke: #0080FF;
+    stroke-dasharray: 565.48;
+    stroke-dashoffset: 565.48;
+}
+
+.progress-ring__circle--secondary {
+    stroke: #00FFFF;
+    stroke-dasharray: 377;
+    stroke-dashoffset: 377;
+}
+
+@keyframes progress-animation {
+    to {
+        stroke-dashoffset: 900;
+    }
+}
+
+.timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.summary-card {
+    background-color: #fff;
+    /* width: 100%; */
+    /* margin: 20px; */
+    box-shadow: 0px 10px 30px 0px rgba(17, 38, 146, 0.05) !important;
+    /* height: auto; */
+    /* border: 1px solid grey; */
+    padding: 10px 20px 0px;
+    border-radius: 12px;
+}
+
+/* .num{
+    font-size: 18px;
+    font-weight: 500;
+    color: #3A57E8;
+} */
+
+.numColor{
+    font-size: 18px;
+    font-weight: 500;
+    color: #3A57E8;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar input {
+    border-radius: 32px;
+    width: 599px;
+    gap: 13px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    text-align: right;
+}
+
+.searchbtn {
+    border-radius: 32px;
+    width: 100px;
+    gap: 13px;
+    color: white;
+    border: none;
+    background-color: #0832DE;
+    padding: 8px;
+}
+
+.search-bar button {
+    color: white;
+}
+
+.table-responsive {
+    min-height: 0.01%;
+    /* overflow-x: scroll !important; */
+    /* overflow-y: scroll !important; */
+    height: 33vh;
+}
+
+.table {
+    background-color: white;
+    /* border-radius: 12px; */
+    /* width: 80%; */
+    border-collapse: separate;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    border-spacing: 0;
+    /* overflow: hidden; */
+}
+
+.table thead th {
+    background-color: #F9FAFB !important;
+    color: #8A92A6 !important;
+    border: none;
+    font-size: 16px !important;
+    font-weight: 400;
+}
+
+.table tbody tr td {
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.pagination .page-link {
+    /* border-radius: 50%; */
+    color: #000000;
+    margin: 0 2px;
+}
+
+.texttitle {
+    color: #232D42;
+    font-weight: 500;
+}
+
+.textsubtitle {
+    color: #3A57E8;
+    font-weight: 500;
+    /* font-size: 18px; */
+}
+
+.texttile {
+    color: #8A92A6;
+    font-weight: 400;
+}
+
+.txt {
+    color: #232D42;
+    font-weight: 500;
+    font-size: 13px;
+    /* padding: 10px; */
+}
+
+.txte {
+    color: #232D42;
+    font-weight: 500;
+    font-size: 13px;
+    /* padding: 10px; */
+}
+
+@media only screen and (max-width: 720px) {
+
+
+    .txt {
+        color: #232D42;
+        font-weight: 500;
+        font-size: 13px;
+        float: right;
+        /* margin-left: 5%; */
+        /* padding: 10px; */
+    }
+}

@@ -25,6 +25,8 @@ if (! function_exists('uploadUrl')) {
             }elseif(str_contains('.webp',$url)){
                 $link = explode('.webp',$url);
                 $link = $link[0].'.webp';
+            }else{
+                $link = $url;
             }
 
 

@@ -88,30 +88,34 @@
     <div wire:loading class="fixed-Loader">
         <div  class="loader"></div>
     </div>
-  
+  @php
+      print_r($notif);
+  @endphp
     @if (!empty2($notif))
-        <div id="modal" class="modal" >
-            <img src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
-                <span class="title">خطا در عملیات</span>
-           
-                @foreach ($notif as $item)
-                    @if (!is_array($item))
-                        <p>{!!$item!!}</p>
-                    @else
-                        @foreach ($item as $data)
-                            <p>{!!$data!!}</p>
-                        @endforeach
-                    @endif
-                @endforeach
-                
-                <div id="button" class="button">بستن</div>
+        <!-- Modal -->
+        <div id="notifeModal" class="costumModel">
+            <div class="row costumModelBox">
+                <div class="col-sm-12 title">
+                    اعلان ها
+                </div>
+                <div class="col-sm-12">
+                    @foreach ($notif as $item)
+                        @if (!is_array($item))
+                            <p>{!!$item!!}</p>
+                        @else
+                            @foreach ($item as $data)
+                                <p>{!!$data!!}</p>
+                            @endforeach
+                        @endif
+                    @endforeach                
+                </div>
+
+                <div class="col-sm-12">
+                    <button wire:click="closeModal()" class="btn btn-danger">بستن</button>
+                </div>
+            </div>
         </div>
     @endif
-        
-        <script>
-            document.getElementById('button').addEventListener('click',()=>{
-                document.getElementById('modal').style.display = 'none';
-            })
-         </script>
+  
 </div>
 
