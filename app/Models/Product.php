@@ -9,6 +9,9 @@ class Product extends Model
 {
     use ColumnFillable;
 
+    const TYPE_DIGIKALA = 0;
+    const TYPE_TOROB = 1;
+
     public function getImages()
     {
         return File::Where(['type_id' => $this->id,'file_type' => Type::FILE_TYPE_IMAGE,'type' => Type::TYPE_PRODUCT ])->get();
@@ -35,5 +38,10 @@ class Product extends Model
     public function productAttribute()
     {
         return $this->hasMany(ProductAttribute::class, 'product_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Categorei::class, 'category_id');
     }
 }

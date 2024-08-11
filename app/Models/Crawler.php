@@ -9,4 +9,9 @@ use App\trait\ColumnFillable;
 class Crawler extends Model
 {
     use ColumnFillable;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'category_id');
+    }
 }

@@ -41,31 +41,31 @@ class Digikala {
 
         $ids = array_column($datas,'id');
         $exists = Tb::get('products')
-                        ->join('product_infos','products.id','=','product_infos.product_id')
+                        ->Where('products.type_store' , Product::TYPE_DIGIKALA)
                         ->whereIn('products.product_id',$ids)
                         ->get()
                         ->keyBy('product_id')
+                        ->toArray()
                     ;
-        $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());
 
 
         foreach ($datas as $key => $value) {
-            if(in_array($value->id,$uniqIds)){
+            if(!array_key_exists($value->id,$exists)){
                 $results['data'][] = [
                     'title_fa' => $value->title_fa,
                     'title_en' => $value->title_en,
                     'url' => Digikala::SITE_URL.$value->url->uri,
-                    'product_type' => $value->product_type,
+                    'product_type' => 'دیجی کالا',
                     'mainImage' => $value->images->main->url[0],
                     'status' => 0
                 ];
              }else{
                 $productExist = $exists[$value->id];
                 $results['data'][] = [
-                    'title_fa' => $productExist->productInfo->title_fa,
-                    'title_en' => $productExist->productInfo->title_en,
+                    'title_fa' => $productExist->title,
+                    'title_en' => $productExist->title,
                     'url' => $productExist->site_url,
-                    'product_type' => $value->product_type,
+                    'product_type' => 'دیجی کالا',
                     'mainImage' => $productExist->mainImage,
                     'status' => 1
                 ];
@@ -82,7 +82,7 @@ class Digikala {
       
         $link = explode('dkp-',$p_detail['url']);
         $idProduct = explode('/',$link[1])[0];
-        if(!$productExist = Product::Where(['product_id' => $idProduct])->first()){
+        if(!$productExist = Product::Where(['product_id' => $idProduct,'type_store' => Product::TYPE_DIGIKALA])->first()){
             // try {
                 $product = file_get_contents(Digikala::PRODUCT_URL.$idProduct.'/');
                 $data = json_decode($product)->data->product;
@@ -112,7 +112,7 @@ class Digikala {
                 if($this->product){
                     $product = new Product;
                     if($this->product['mainImage']){
-                        $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product');
+                        $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product/digikala');
                     }
                     $product->site_url = $this->product['url'];
                     $product->title = $this->product['title_fa'];
@@ -120,6 +120,7 @@ class Digikala {
                     $product->comments_count = $this->product['comments_count'];
                     $product->suggestion = $this->product['suggestion']->count;
                     $product->product_id = $this->product['id'];
+                    $product->type_store = Product::TYPE_DIGIKALA;
                     $product->Save();
     
                     $productInfo = new ProductInfo;

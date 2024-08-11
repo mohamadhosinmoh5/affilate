@@ -12,6 +12,7 @@ use App\Models\Type;
 use App\Models\ProductAttribute;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Class\helpers\SearchOnline;
+use App\Class\helpers\StringHelper;
 
 class Torob {
 
@@ -43,32 +44,39 @@ class Torob {
         ];
 
         $ids = array_column($datas,'random_key');
+
         $exists = Tb::get('products')
-                        ->join('product_infos','products.id','=','product_infos.product_id')
+                        ->Where('products.type_store' , Product::TYPE_TOROB)
                         ->whereIn('products.product_id',$ids)
                         ->get()
                         ->keyBy('product_id')
+                        ->toArray()
                     ;
-        $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());
-
+       
+        // $uniqIds = array_diff($ids,$exists->pluck('product_id')->toArray());
+        
 
         foreach ($datas as $key => $value) {
-            if(in_array($value->random_key,$uniqIds)){
+          
+            if(!array_key_exists($value->random_key,$exists)){
                 $results['data'][] = [
                     'title_fa' => $value->name1,
                     'title_en' => $value->name2,
                     'url' => Torob::PRODUCT_URL.$value->random_key,
-                    'product_type' => $value->price_text_mode,
+                    'product_type' => "ترب",
                     'mainImage' => $value->image_url,
+                    'id' => $value->random_key,
                     'status' => 0
                 ];
              }else{
-                $productExist = $exists[$value->id];
+                 $productExist = $exists[$value->random_key];
+             
                 $results['data'][] = [
-                    'title_fa' => $productExist->productInfo->title_fa,
-                    'title_en' => $productExist->productInfo->title_en,
+                    'title_fa' => $productExist->title,
+                    'title_en' => $productExist->title,
                     'url' => $productExist->site_url,
-                    'product_type' => $value->product_type,
+                    'product_type' => 'ترب',
+                    'id' => $productExist->product_id,
                     'mainImage' => $productExist->mainImage,
                     'status' => 1
                 ];
@@ -81,87 +89,87 @@ class Torob {
 
 
     public function crawlProduct($p_detail)
-    {
-        $link = explode('?prk=',$p_detail['url']);
-        $idProduct = explode('/',$link[1])[0];
-        if(!$productExist = Product::Where(['product_id' => $idProduct])->first()){
-            // try {
-                $product = file_get_contents(Torob::PRODUCT_URL.$idProduct);
-                $data = json_decode($product);
-           
-                $this->product =  [
-                    'id' => $data->random_key,
-                    'title_fa' => $data->name1,
-                    'title_en' => $data->name2,
-                    'url' => $p_detail['url'],
-                    'images' => $data->media_urls,
-                    'mainImage' => $data->image_url,
-                    'price' => $data->price,
-                    'videos' => null,
-                    'attributes' => $data->key_specs,
-                    'rating' => null,
-                    'description' => null,
-                    'seller' => $data->products_info->result,
-                ];
-                // dd($data);
-                if($this->product){
-                    $product = new Product;
-                    $product->title = $this->product['title_fa'];
-                    if($this->product['mainImage']){
-                        $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product');
-                    }
-                    $product->site_url = $this->product['url'];
-                    
-                    $product->default_price = $this->product['price'];
-                    $product->product_id = $this->product['id'];
-                    $product->Save();
-    
-                    $productInfo = new ProductInfo;
-                    $productInfo->product_id = $product->id;
-                    $productInfo->title_fa = $this->product['title_fa'];
-                    $productInfo->title_en = $this->product['title_en'];
-                    $productInfo->Save();
-    
-    
-                    foreach ($this->product['images'] as $key => $image) {
-                        $images = new File;
-                        $images->type = Type::TYPE_PRODUCT;
-                        $images->type_id = $product->id;
-                        $images->file_type = Type::FILE_TYPE_IMAGE;
-                        $images->url = $image->url[0];
-                        $images->name = ' عکس'.$key.' '.$this->product['title_fa'];
-                        $images->Save();
-                    }
-                   
-                    if(!empty2($this->product['attributes']) && key_exists('items',$this->product['attributes']))
-                        foreach ($this->product['attributes']['items'] as $attribute) {
-                            $productAttribute = new ProductAttribute;
-                            $productAttribute->product_id = $product->id;
-                            $productAttribute->key = $attribute->key;
-                            $productAttribute->value = serialize($attribute->values);
-                            $productAttribute->Save();
-                        }
-
-                    $crawled = new Crawled;
-                    $crawled->title = $this->product['title_fa'];
-                    $crawled->url = $this->product['url'];
-                    $crawled->status = Torob::STATUS_SUCCESS;
-                    $crawled->title = $this->product['title_fa'];
-                    $crawled->crawled_id = $this->product['id'];
-                    $crawled->Save();
-
-                    $this->success[] = $this->product['title_fa']."با موفقیت ایجاد شد ";
-
-                    return $this->success;
-                }
-            // } catch (\Throwable $th) {
-                 $this->errors[] = 'خطا در ایجاد محصول';
-                return $this->errors;
-            // }
-
-        }else{
-            $this->errors[] = "محصول  ".$productExist->productInfo->title_fa." از قبل موجود می باشد";
+    {   
+        $productExist = Product::Where(['product_id' => $p_detail['id'],'type_store'=> Product::TYPE_TOROB])->first();
+        dd(StringHelper::MatchStringPercent($productExist->title_fa,$p_detail['title_fa']));
+        if($productExist && StringHelper::MatchStringPercent($productExist->title_fa,$p_detail['title_fa'])){
+            $this->errors[] = "محصول  ".$productExist->title_fa." از قبل موجود می باشد";
             return $this->errors;
+        }else{
+                        // try {
+                            $product = file_get_contents(Torob::PRODUCT_URL.$p_detail['id']);
+                            $data = json_decode($product);
+                       
+                            $this->product =  [
+                                'id' => $data->random_key,
+                                'title_fa' => $data->name1,
+                                'title_en' => $data->name2,
+                                'url' => $p_detail['url'],
+                                'images' => $data->media_urls,
+                                'mainImage' => $data->image_url,
+                                'price' => $data->price,
+                                'videos' => null,
+                                'attributes' => $data->key_specs,
+                                'rating' => null,
+                                'description' => null,
+                                'seller' => $data->products_info->result,
+                            ];
+                            // dd($data);
+                            if($this->product){
+                                $product = new Product;
+                                $product->title = $this->product['title_fa'];
+                                if($this->product['mainImage']){
+                                    $product->mainImage = uploadUrl($this->product['mainImage'],'storage/upload/product/torob');
+                                }
+                                $product->site_url = $this->product['url'];
+                                
+                                $product->default_price = $this->product['price'];
+                                $product->product_id = $data->random_key;
+                                $product->type_store = Product::TYPE_TOROB;
+                                $product->Save();
+                
+                                $productInfo = new ProductInfo;
+                                $productInfo->product_id = $product->product_id;
+                                $productInfo->title_fa = $this->product['title_fa'];
+                                $productInfo->title_en = $this->product['title_en'];
+                                $productInfo->Save();
+                
+                
+                                foreach ($this->product['images'] as $key => $image) {
+                                    $images = new File;
+                                    $images->type = Type::TYPE_PRODUCT;
+                                    $images->type_id = $product->id;
+                                    $images->file_type = Type::FILE_TYPE_IMAGE;
+                                    $images->url = $image->url[0];
+                                    $images->name = ' عکس'.$key.' '.$this->product['title_fa'];
+                                    $images->Save();
+                                }
+                               
+                                if(!empty2($this->product['attributes']) && key_exists('items',$this->product['attributes']))
+                                    foreach ($this->product['attributes']['items'] as $attribute) {
+                                        $productAttribute = new ProductAttribute;
+                                        $productAttribute->product_id = $product->id;
+                                        $productAttribute->key = $attribute->key;
+                                        $productAttribute->value = serialize($attribute->values);
+                                        $productAttribute->Save();
+                                    }
+            
+                                $crawled = new Crawled;
+                                $crawled->title = $this->product['title_fa'];
+                                $crawled->url = $this->product['url'];
+                                $crawled->status = Torob::STATUS_SUCCESS;
+                                $crawled->title = $this->product['title_fa'];
+                                $crawled->crawled_id = $this->product['id'];
+                                $crawled->Save();
+            
+                                $this->success[] = $this->product['title_fa']."با موفقیت ایجاد شد ";
+            
+                                return $this->success;
+                            }
+                        // } catch (\Throwable $th) {
+                             $this->errors[] = 'خطا در ایجاد محصول';
+                            return $this->errors;
+                        // }
         }
     }
 

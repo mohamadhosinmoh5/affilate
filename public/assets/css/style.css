@@ -93,3 +93,7 @@ border-bottom: 1px solid #eee;
       transform: scale(0);
       }
 }
+
+a {
+  text-decoration: none;
+}

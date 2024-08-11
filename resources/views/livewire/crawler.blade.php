@@ -56,10 +56,10 @@
                         <td>{!!$item['product_type']!!}</td>
                         <td><img width="100px" src="{!!$item['mainImage']!!}" alt=""></td>
                         <td>
-                            @if ($item['status'] ==1)
-                                <div class="alert alert-success">کاوش شده</div>
+                            @if ($item['status'] == 1)
+                                    <div class="alert alert-success">کاوش شده</div>
                                 @else
-                                <div class="alert alert-danger">کاوش نشده</div>
+                                    <div class="alert alert-danger">کاوش نشده</div>
                             @endif
                         </td>
                         <td><a wire:click='addProduct({!!json_encode($item)!!})' class="btn btn-success">افزودن به محصولات</a></td>
@@ -74,8 +74,8 @@
                 <tr>
                     <th>
                        <div class="row">
-                            <div class="col-6"><a href="#" wire:click='crawlPage({{$page-1}})'>صفحه قبلی </a> </div>
-                            <div class="col-6"> <a href="#" wire:click='crawlPage({{$page+1}})'>صفحه بعدی </a> </div>
+                            <div class="col-sm-6"><a href="#" class="btn btn-info" wire:click='crawlPage({{$page-1}})'>صفحه قبلی </a> </div>
+                            <div class="col-sm-6"> <a href="#" class="btn btn-info" wire:click='crawlPage({{$page+1}})'>صفحه بعدی </a> </div>
                         </div>
                     </th>
                     <th>
@@ -88,9 +88,7 @@
     <div wire:loading class="fixed-Loader">
         <div  class="loader"></div>
     </div>
-  @php
-      print_r($notif);
-  @endphp
+ 
     @if (!empty2($notif))
         <!-- Modal -->
         <div id="notifeModal" class="costumModel">
@@ -107,7 +105,7 @@
                                 <p>{!!$data!!}</p>
                             @endforeach
                         @endif
-                    @endforeach                
+                    @endforeach
                 </div>
 
                 <div class="col-sm-12">
