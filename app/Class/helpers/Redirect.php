@@ -3,12 +3,14 @@ namespace App\Class\helpers;
 
 class Redirect {
     
-    public static function getFinalRedirectUrl($url,$timeout = 60) {
+    public static function getFinalRedirectUrl($url,$timeout = 600) {
           // Initialize cURL session
           $ch = curl_init($url);
 
           curl_setopt_array($ch, [
               CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_NOBODY => true,
+              CURLOPT_AUTOREFERER => true,
               CURLOPT_FOLLOWLOCATION => true, // Allows the following of redirects.
               CURLOPT_MAXREDIRS => 10, // Sets the maximum number of redirects to follow.
               CURLOPT_TIMEOUT => $timeout, // Sets a timeout to avoid excessive waiting.

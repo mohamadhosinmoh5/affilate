@@ -89,11 +89,15 @@ class Torob {
 
 
     public function crawlProduct($p_detail)
-    {   
-        $productExist = Product::Where(['product_id' => $p_detail['id'],'type_store'=> Product::TYPE_TOROB])->first();
-        dd(StringHelper::MatchStringPercent($productExist->title_fa,$p_detail['title_fa']));
-        if($productExist && StringHelper::MatchStringPercent($productExist->title_fa,$p_detail['title_fa'])){
-            $this->errors[] = "محصول  ".$productExist->title_fa." از قبل موجود می باشد";
+    {
+        
+        $productExist = Product::Where(['product_id' => $p_detail['id'],'type_store'=> Product::TYPE_TOROB])
+        // ->orWhereRaw("MATCH(title) AGAINST(?)", [$p_detail['title_fa']])
+        ->orWhere("title",'LIKE', '%'.$p_detail['title_fa'].'%')
+        ->first();
+      
+        if($productExist && StringHelper::MatchStringPercent($productExist->title,$p_detail['title_fa'])){
+            $this->errors[] = "محصول  ".$productExist->title." از قبل موجود می باشد";
             return $this->errors;
         }else{
                         // try {
@@ -114,7 +118,8 @@ class Torob {
                                 'description' => null,
                                 'seller' => $data->products_info->result,
                             ];
-                            // dd($data);
+
+                            dd(SearchOnline::google($this->product['title_fa']));
                             if($this->product){
                                 $product = new Product;
                                 $product->title = $this->product['title_fa'];

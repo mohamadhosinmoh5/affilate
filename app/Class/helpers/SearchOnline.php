@@ -1,8 +1,57 @@
 <?php
 namespace App\Class\helpers;
 
+use GuzzleHttp\Client;
 class SearchOnline{
 
+    const TOTALSEARCH = 20;
+
+    public static function google($query,$start=1)
+    {
+
+        // کلید API و شناسه موتور جستجوی سفارشی (cx)
+        $apiKey = 'AIzaSyCmIIQoDGr8Kj6s2XO-jYTfwnWDaAZu3mE';
+        $cx = 'e4e0e5b8929de4c46';
+
+        // تعداد نتایج در هر درخواست
+        $num = self::TOTALSEARCH;
+        
+        // ایجاد کلاینت Guzzle
+        $client = new Client();
+        
+        $results = self::fetchResults($client, $apiKey, $cx, $query, $num, $start);
+        if (isset($results['items'])) {
+            foreach ($results['items'] as $item) {
+                echo "Title: " . $item['title'] . "\n";
+                echo "Link: " . $item['link'] . "\n";
+                echo "Snippet: " . $item['snippet'] . "\n\n";
+            }
+        }
+
+
+    }
+
+    // تابع برای ارسال درخواست و بازیابی نتایج
+    public static function fetchResults($client, $apiKey, $cx, $query, $num, $start) {
+        $response = $client->request('GET', 'https://www.googleapis.com/customsearch/v1', [
+            'query' => [
+                'key' => $apiKey,
+                'cx' => $cx,
+                'q' => $query,
+                'num' => $num,
+                'start' => $start
+            ]
+        ]);
+    
+        if ($response->getStatusCode() == 200) {
+            return json_decode($response->getBody(), true);
+        } else {
+            echo "Error: " . $response->getStatusCode();
+            return [];
+        }
+    }
+        
+            
     public static function searchWikipedia($query) {
         // ساخت URL درخواست
         $url = 'https://fa.wikipedia.org/w/api.php?action=query&list=search&srsearch=' . urlencode($query) . '&format=json&utf8=1';
