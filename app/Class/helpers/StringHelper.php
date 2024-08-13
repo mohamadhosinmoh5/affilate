@@ -12,20 +12,27 @@ class StringHelper {
     
     public static function MatchStringPercent($baseText,$matchText) {
 
-        $subscribe = array_intersect(self::enCharacter($baseText)[0],self::enCharacter($matchText)[0]);
-        $diff = array_diff(self::enCharacter($baseText)[0],self::enCharacter($matchText)[0]);
         $matches = [];
+        $notMatch = [];
         foreach (self::enCharacter($matchText)[0] as $key => $value) {
-            if(!in_array($value,self::enCharacter($baseText)[0])){
+            if(in_array($value,self::enCharacter($baseText)[0])){
                 $matches[] = $value;
+            }else{
+                $notMatch[] = $value;
             }
         }
 
-        if(!empty2($matches) && count($matches) > 0){
+        if(
+            !empty2($notMatch) && count($notMatch) > 0
+            &&
+            !empty2($matches) && count($matches) < count($notMatch)
+        ){
             return false;
         }else{
             return true;
         }
+
+        
     }
 
 

@@ -5,6 +5,7 @@ use GuzzleHttp\Client;
 class SearchOnline{
 
     const TOTALSEARCH = 20;
+    public static $results = [];
 
     public static function google($query,$start=1)
     {
@@ -19,26 +20,37 @@ class SearchOnline{
         // ایجاد کلاینت Guzzle
         $client = new Client();
         
-        $results = self::fetchResults($client, $apiKey, $cx, $query, $num, $start);
-        if (isset($results['items'])) {
-            foreach ($results['items'] as $item) {
-                echo "Title: " . $item['title'] . "\n";
-                echo "Link: " . $item['link'] . "\n";
-                echo "Snippet: " . $item['snippet'] . "\n\n";
+        $results1 = self::fetchResults($client, $apiKey, $cx, $query, 1);
+        $results2 = self::fetchResults($client, $apiKey, $cx, $query,10);
+        $results = array_merge($results1['items'],$results2['items']);
+        
+        if (isset($results)) {
+            foreach ($results as $item) {
+
+                if(
+                    !str_contains($item['link'],'torob') &&
+                     !str_contains($item['link'],'zoomit') && 
+                     !str_contains($item['link'],'emalls') &&
+                     StringHelper::MatchStringPercent($query,$item['title'])
+                     )
+                    self::$results[] = [
+                        'title' => $item['title'],
+                        'link' => $item['link'],
+                        'displayLink' => $item['displayLink'],
+                    ];
             }
         }
 
+        return self::$results;
 
     }
 
-    // تابع برای ارسال درخواست و بازیابی نتایج
-    public static function fetchResults($client, $apiKey, $cx, $query, $num, $start) {
-        $response = $client->request('GET', 'https://www.googleapis.com/customsearch/v1', [
+    public static function fetchResults($client, $apiKey, $cx, $query,$start) {
+        $response = $client->request('GET', 'https://customsearch.googleapis.com/customsearch/v1', [
             'query' => [
                 'key' => $apiKey,
                 'cx' => $cx,
                 'q' => $query,
-                'num' => $num,
                 'start' => $start
             ]
         ]);

@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\trait\ColumnFillable;
 
-class ProductAttribute extends Model
+
+class Seller extends Model
 {
     use ColumnFillable;
 
@@ -14,4 +15,3 @@ class ProductAttribute extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 }
-
