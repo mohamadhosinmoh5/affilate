@@ -25,20 +25,25 @@ class addSellersJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle() :void
     {
-        $products = Product::Where('job_status' ,0)->with('productInfo')->latest()->take(10)->get();
-
+        $products = Product::Where('job_status' ,0)->latest()->take(10)->get();
         foreach ($products as $product) {
             $results = SearchOnline::google($product->title);
             if ($results) {
                 foreach ($results as $result) {
-                    $product->sellers->create([
-                        'name' => ,
-                        'link' => ,
-                    ]);
+                    $links = [
+                        'name' => $result['displayLink'],
+                        'link' => $result['link'],
+                    ];
+                    $product->sellers()->create(
+                        $links
+                    );
+                    $product->job_status = 1;
+                    $product->save();
                 }
             }
+
         }
     }
 }

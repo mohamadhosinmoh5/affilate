@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Product;
 use App\Http\Controllers\Crawler;
+use App\Class\helpers\SearchOnline;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+route::get('test',function (){
+  
+        });
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
