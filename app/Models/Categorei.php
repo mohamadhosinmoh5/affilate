@@ -8,7 +8,8 @@ use App\trait\ColumnFillable;
 class Categorei extends Model
 {
     use ColumnFillable;
-
+    const TYPE_PRODUCT = 0 ;
+    const TYPE_POST = 1 ;
 
     public function product()
     {

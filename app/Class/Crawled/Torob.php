@@ -119,7 +119,7 @@ class Torob {
                                 'seller' => $data->products_info->result,
                             ];
 
-                            dd(SearchOnline::google($this->product['title_fa']));
+                            
                             if($this->product){
                                 $product = new Product;
                                 $product->title = $this->product['title_fa'];

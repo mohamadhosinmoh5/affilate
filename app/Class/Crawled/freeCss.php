@@ -11,11 +11,14 @@ use App\Models\File;
 use App\Models\Type;
 use App\Models\ProductAttribute;
 use PhpParser\Node\Stmt\TryCatch;
+use GuzzleHttp\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
-class Digikala
+
+class freeCss
 {
 
-    const API_URL = "https://api.digikala.com/v1/categories/";
+    const API_URL = "https://www.free-css.com/free-css-templates";
     const PRODUCT_URL = "https://api.digikala.com/v2/product/";
     const SITE_URL = 'https://digikala.com';
 
@@ -25,10 +28,11 @@ class Digikala
     public $errors = [];
     public $success = [];
 
+
     public function crawler($categoryUrl, $page)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, Digikala::API_URL . $categoryUrl . '/search/?has_selling_stock=1&page=' . $page);
+        curl_setopt($ch, CURLOPT_URL, freeCss::API_URL . $categoryUrl );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // دنبال کردن ریدایرکت‌ها
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
@@ -85,8 +89,6 @@ class Digikala
 
         return $results;
     }
-
-
 
     public function crawlProduct($p_detail)
     {
@@ -207,5 +209,65 @@ class Digikala
             return $result;
         else
             return false;
+    }
+
+
+
+
+
+    function isValidUrl(string $url): bool
+    {
+        $parsed = parse_url($url);
+        return isset($parsed['scheme']) && isset($parsed['host']);
+    }
+
+    function getPostLinks(string $url, Client $client): array
+    {
+        try {
+            $response = $client->request('GET', $url);
+            $html = (string) $response->getBody();
+            $crawler = new Crawler($html, $url);
+
+            $postLinks = $crawler->filter('.template-list .template-thumb a')->each(function (Crawler $node) use ($url) {
+                $href = $node->attr('href');
+                $absoluteLink =  \Symfony\Component\Uri\UriResolver::resolve($url, $href);
+                if (isValidUrl($absoluteLink)) {
+                    return $absoluteLink;
+                }
+                return null;
+            });
+
+            return array_filter($postLinks);
+        } catch (\Exception $e) {
+            echo "Error fetching URL {$url}: {$e->getMessage()}" . PHP_EOL;
+            return [];
+        }
+    }
+
+    function extractDownloadLink(string $url, Client $client): ?string
+    {
+        try {
+            $response = $client->request('GET', $url);
+            $html = (string) $response->getBody();
+            $crawler = new Crawler($html, $url);
+
+            // بررسی کنید که دکمه دانلود یا لینک دانلود چگونه در صفحه مشخص شده
+            $downloadLinkNode = $crawler->filter('.template-download a');
+
+            if ($downloadLinkNode->count() > 0) {
+                $href = $downloadLinkNode->first()->attr('href');
+                return \Symfony\Component\Uri\UriResolver::resolve($url, $href);
+            } else {
+                $downloadLinkNode = $crawler->filter('.download-button-v3 a');
+                if ($downloadLinkNode->count() > 0) {
+                    $href = $downloadLinkNode->first()->attr('href');
+                    return \Symfony\Component\Uri\UriResolver::resolve($url, $href);
+                }
+            }
+            return null;
+        } catch (\Exception $e) {
+            echo "Error fetching or processing download link from URL {$url}: {$e->getMessage()}" . PHP_EOL;
+            return null;
+        }
     }
 }
